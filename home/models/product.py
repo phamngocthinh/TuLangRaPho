@@ -15,3 +15,6 @@ class Product(models.Model):
 
     class Meta:
         db_table = 'products'
+
+    def __str__(self):
+        return self.id

@@ -18,3 +18,6 @@ class Discount(models.Model):
 
     class Meta:
         db_table = 'discount'
+
+    def __str__(self):
+        return self.discount
