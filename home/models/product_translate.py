@@ -16,3 +16,6 @@ class ProductTranslate(models.Model):
 
     class Meta:
         db_table = 'product_translates'
+
+    def __str__(self):
+        return self.id
