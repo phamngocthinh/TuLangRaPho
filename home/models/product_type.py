@@ -12,5 +12,4 @@ class ProductType(models.Model):
     delete_flag = models.IntegerField(db_column='delete_flag', blank=True, null=True)
 
     class Meta:
-        managed = False
         db_table = 'product_types'
