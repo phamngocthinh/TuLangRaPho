@@ -1,9 +1,11 @@
 from django.db import models
 
+from home.models.product import Product
+
 
 class Discount(models.Model):
     id = models.SmallAutoField(db_column='id', primary_key=True)
-    product_id = models.IntegerField(db_column='product_id', blank=True, null=True)
+    product_id = models.ForeignKey(to=Product, on_delete=models.CASCADE, db_column='product_id', blank=True, null=True)
     discount = models.FloatField(db_column='discount', blank=True, null=True)
     effected_start_date = models.DateTimeField(db_column='effected_start_date', blank=True, null=True)
     effected_end_date = models.DateTimeField(db_column='effected_end_date', blank=True, null=True)
