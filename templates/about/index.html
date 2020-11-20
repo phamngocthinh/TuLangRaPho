@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    {% include 'about/banner.html' %}
+    <section class="section section-sm section-first bg-default text-md-left">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                        eiusmod tempor incididunt ut labore et dolore magna aliqua.<img alt=""
+                                                                                        src="{% static 'images/product/product-2.png' %}"
+                                                                                        style="width: 262px; height: 262px; float: right; margin: 10px;"/>
+                    </p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                        eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

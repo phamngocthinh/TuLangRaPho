@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    {% include 'contact/banner.html' %}
+
+    <section class="section section-sm section-first bg-default text-md-left">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-6 contact_content">
+                    <img src="https://demo.s-cart.org/data/logo/scart-mid.png">
+                    <address>
+                        <p>Demo SCart : Free Laravel eCommerce</p>
+                        <p>123st - abc - xyz</p>
+                        <p>Support: 0987654321</p>
+                        <p>demo-admin@s-cart.org</p>
+                    </address>
+                </div>
+                <div class="col-12 col-sm-12 col-md-6">
+                    <form method="post" action="https://demo.s-cart.org/contact" class="contact-form" id="form-process">
+                        <input type="hidden" name="_token" value="wy4c136LVo5KnpK03FKr1pSZZddhehoiewKdJV7s">
+                        <div id="contactFormWrapper">
+                            <div class="row">
+                                <div class="col-12 col-sm-12 col-md-12 form-group ">
+                                    <label>Name:</label>
+                                    <input type="text" class="form-control "
+                                           name="name" placeholder="Name" value="">
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-12 form-group ">
+                                    <label>Email:</label>
+                                    <input type="email" class="form-control "
+                                           name="email" placeholder="Email" value="">
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-12 form-group ">
+                                    <label>Phone:</label>
+                                    <input type="telephone" class="form-control "
+                                           name="phone" placeholder="Phone" value="">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12 col-sm-12 col-md-12 form-group ">
+                                    <label class="control-label">Subject:</label>
+                                    <input type="text" class="form-control "
+                                           name="title" placeholder="Subject" value="">
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-12 form-group ">
+                                    <label class="control-label">Content:</label>
+                                    <textarea class="form-control " rows="5"
+                                              cols="75" name="content" placeholder="Content"></textarea>
+
+                                </div>
+                            </div>
+
+                            <style>
+                                #button-form-process {
+                                    display: none !important;
+                                }
+                            </style>
+                            <script src="https://www.google.com/recaptcha/api.js"></script>
+                            <button class="g-recaptcha button"
+                                    data-sitekey="6LcyhswZAAAAALSgF3tAJxMsy7jTqvL5NnFFmVrg"
+                                    data-callback='onSubmit'
+                                    data-action='submit'>Submit
+                            </button>
+                            <script>
+                                function onSubmit(token) {
+                                    document.getElementById("form-process").submit();
+                                }
+                            </script>
+
+
+                            <div class="btn-toolbar form-group">
+                                <input type="submit" value="Submit" class="button button-lg button-secondary"
+                                       id="button-form-process">
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
