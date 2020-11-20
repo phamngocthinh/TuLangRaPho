@@ -21,6 +21,8 @@
     <link rel="stylesheet" href="https://demo.s-cart.org/templates/s-cart-light/css/fonts.css">
     <link rel="stylesheet" href="https://demo.s-cart.org/templates/s-cart-light/css/style.css">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/swiper.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
 
 </head>
 <body>
@@ -28,13 +30,13 @@
     {% include 'header.html' %}
     {% block content %}{% endblock %}
     {% include 'footer.html' %}
-
 </div>
 
 <div id="sc-loading">
     <div class="sc-overlay"><i class="fa fa-spinner fa-pulse fa-5x fa-fw "></i></div>
 </div>
 <script src="{% static 'js/base.js' %}"></script>
+<script src="{% static 'js/bootstrap.js' %}"></script>
 <script src="https://demo.s-cart.org/templates/s-cart-light/js/core.min.js"></script>
 <script src="https://demo.s-cart.org/templates/s-cart-light/js/script.js"></script>
 <script src="https://demo.s-cart.org/js/sweetalert2.all.min.js"></script>
