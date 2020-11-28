@@ -1,21 +1,14 @@
 from django.db import models
 
-from home.models import Category
-from home.models import ProductType
+from home.models import BaseModel, Product
 
 
-class ProductTranslate(models.Model):
-    id = models.AutoField(db_column='id', primary_key=True)
-    product_type_id = models.ForeignKey(to=ProductType, on_delete=models.CASCADE, db_column='product_type_id')
-    category = models.ForeignKey(to=Category, on_delete=models.CASCADE, db_column='category_id')
-    create_time = models.DateTimeField(db_column='create_time', blank=True, null=True)
-    update_time = models.DateTimeField(db_column='update_time', blank=True, null=True)
-    create_user = models.IntegerField(db_column='create_user', blank=True, null=True)
-    update_user = models.IntegerField(db_column='update_user', blank=True, null=True)
-    delete_flag = models.IntegerField(db_column='delete_flag', blank=True, null=True)
+class ProductTranslate(BaseModel):
+    lang_code = models.CharField(db_column='lang_code', max_length=10, blank=False, null=False, default="")
+    product_id = models.ForeignKey(to=Product, on_delete=models.CASCADE, db_column='product_id', blank=False,
+                                   null=False, default=None)
+    product_name = models.CharField(db_column='product_name', max_length=100, blank=True, null=False)
+    description = models.CharField(db_column='description', max_length=200, blank=True, null=False)
 
     class Meta:
         db_table = 'product_translates'
-
-    def __str__(self):
-        return self.id
