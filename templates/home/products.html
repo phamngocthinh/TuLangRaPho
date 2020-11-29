@@ -13,7 +13,7 @@
                         <ul class="list-shop-filter">
                           {% for c in categories %}
                             <li class="product-minimal-title active"><a
-                                href="#"> {{ c.category_name }}</a></li>
+                                href="/category/{{ c.category_id }}"> {{ c.category_name }}</a></li>
                           {% endfor %}
                         </ul>
                     </div>
@@ -21,14 +21,17 @@
                         <h6 class="aside-title">Brands</h6>
                         <div class="row row-10 row-lg-20 gutters-10">
                             <div class="group-sm group-tags">
-                                <a class="link-tag" href="https://demo.s-cart.org/brand/husq.html"> Husq</a>
-                                <a class="link-tag" href="https://demo.s-cart.org/brand/ideal.html"> Ideal</a>
-                                <a class="link-tag" href="https://demo.s-cart.org/brand/apex.html"> Apex</a>
-                                <a class="link-tag" href="https://demo.s-cart.org/brand/cst.html"> CST</a>
-                                <a class="link-tag" href="https://demo.s-cart.org/brand/klein.html"> Klein</a>
-                                <a class="link-tag" href="https://demo.s-cart.org/brand/metabo.html"> Metabo</a>
-                                <a class="link-tag" href="https://demo.s-cart.org/brand/avatar.html"> Avatar</a>
-                                <a class="link-tag" href="https://demo.s-cart.org/brand/brand-ka.html"> Brand KA</a>
+                                {% for product_type in product_types %}
+                                    <a class="link-tag" href="https://demo.s-cart.org/brand/husq.html"> {{ product_type.type_name }}</a>
+                                {% endfor %}
+{#                                <a class="link-tag" href="https://demo.s-cart.org/brand/husq.html"> Husq</a>#}
+{#                                <a class="link-tag" href="https://demo.s-cart.org/brand/ideal.html"> Ideal</a>#}
+{#                                <a class="link-tag" href="https://demo.s-cart.org/brand/apex.html"> Apex</a>#}
+{#                                <a class="link-tag" href="https://demo.s-cart.org/brand/cst.html"> CST</a>#}
+{#                                <a class="link-tag" href="https://demo.s-cart.org/brand/klein.html"> Klein</a>#}
+{#                                <a class="link-tag" href="https://demo.s-cart.org/brand/metabo.html"> Metabo</a>#}
+{#                                <a class="link-tag" href="https://demo.s-cart.org/brand/avatar.html"> Avatar</a>#}
+{#                                <a class="link-tag" href="https://demo.s-cart.org/brand/brand-ka.html"> Brand KA</a>#}
                             </div>
                             <!--brands_products-->
                         </div>
@@ -262,50 +265,51 @@
 
 
                 <div class="row row-30 row-lg-50">
-                    <div class="col-sm-6 col-md-4 col-lg-6 col-xl-4">
-                        <!-- Product-->
-                        <article class="product wow fadeInRight">
-                            <div class="product-body">
-                                <div class="product-figure">
-                                    <a href="https://demo.s-cart.org/product/dfsdfsdfsdf/s2.html">
-                                        <img src="https://demo.s-cart.org/data/product/2/CE91949C-B13B-42A1-8B4B-9A663352C160.png"
-                                             alt="abc"/>
-                                    </a>
-                                </div>
-                                <h5 class="product-title"><a
-                                        href="https://demo.s-cart.org/product/dfsdfsdfsdf/s2.html">abc</a></h5>
-
-
-                                <div class="store-url"><a href="https://demo.s-cart.org/store/store-2"><i
-                                        class="fa fa-shopping-bag" aria-hidden="true"></i> Store 2</a>
-                                </div>
-
-
-                                <a onClick="addToCartAjax('27','default','2')"
-                                   class="button button-lg button-secondary button-zakaria add-to-cart-list">
-                                    <i class="fa fa-cart-plus"></i> Add to cart</a>
-
-                                <div class="product-price-wrap">
-                                    <div class="product-price">$200,000</div>
-                                </div>
-                            </div>
-
-                            <div class="product-button-wrap">
-                                <div class="product-button">
-                                    <a class="button button-secondary button-zakaria"
-                                       onClick="addToCartAjax('27','wishlist','2')">
-                                        <i class="fas fa-heart"></i>
-                                    </a>
-                                </div>
-                                <div class="product-button">
-                                    <a class="button button-primary button-zakaria"
-                                       onClick="addToCartAjax('27','compare','2')">
-                                        <i class="fa fa-exchange"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
+{#                    <div class="col-sm-6 col-md-4 col-lg-6 col-xl-4">#}
+{#                        <!-- Product-->#}
+{#                        <article class="product wow fadeInRight">#}
+{#                            <div class="product-body">#}
+{#                                <div class="product-figure">#}
+{#                                    <a href="https://demo.s-cart.org/product/dfsdfsdfsdf/s2.html">#}
+{#                                        <img src="https://demo.s-cart.org/data/product/2/CE91949C-B13B-42A1-8B4B-9A663352C160.png"#}
+{#                                             alt="abc"/>#}
+{#                                    </a>#}
+{#                                </div>#}
+{#                                <h5 class="product-title"><a#}
+{#                                        href="https://demo.s-cart.org/product/dfsdfsdfsdf/s2.html">abc</a></h5>#}
+{##}
+{##}
+{#                                <div class="store-url"><a href="https://demo.s-cart.org/store/store-2"><i#}
+{#                                        class="fa fa-shopping-bag" aria-hidden="true"></i> Store 2</a>#}
+{#                                </div>#}
+{##}
+{##}
+{#                                <a onClick="addToCartAjax('27','default','2')"#}
+{#                                   class="button button-lg button-secondary button-zakaria add-to-cart-list">#}
+{#                                    <i class="fa fa-cart-plus"></i> Add to cart</a>#}
+{##}
+{#                                <div class="product-price-wrap">#}
+{#                                    <div class="product-price">$200,000</div>#}
+{#                                </div>#}
+{#                            </div>#}
+{##}
+{#                            <div class="product-button-wrap">#}
+{#                                <div class="product-button">#}
+{#                                    <a class="button button-secondary button-zakaria"#}
+{#                                       onClick="addToCartAjax('27','wishlist','2')">#}
+{#                                        <i class="fas fa-heart"></i>#}
+{#                                    </a>#}
+{#                                </div>#}
+{#                                <div class="product-button">#}
+{#                                    <a class="button button-primary button-zakaria"#}
+{#                                       onClick="addToCartAjax('27','compare','2')">#}
+{#                                        <i class="fa fa-exchange"></i>#}
+{#                                    </a>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </article>#}
+{#                    </div>#}
+                    {% for product in products %}
                     <div class="col-sm-6 col-md-4 col-lg-6 col-xl-4">
                         <!-- Product-->
                         <article class="product wow fadeInRight">
@@ -317,12 +321,11 @@
                                     </a>
                                 </div>
                                 <h5 class="product-title"><a
-                                        href="https://demo.s-cart.org/product/demo-alias-name-product-26/s3.html">Easy
-                                    Polo Black Edition 26</a></h5>
+                                        href="https://demo.s-cart.org/product/demo-alias-name-product-26/s3.html">{{ product.id }}</a></h5>
 
 
                                 <div class="store-url"><a href="https://demo.s-cart.org/store/store-3"><i
-                                        class="fa fa-shopping-bag" aria-hidden="true"></i> Store 3</a>
+                                        class="fa fa-shopping-bag" aria-hidden="true"></i>{{ product.id }}</a>
                                 </div>
 
 
@@ -355,466 +358,467 @@
                             </div>
                         </article>
                     </div>
-                    <div class="col-sm-6 col-md-4 col-lg-6 col-xl-4">
-                        <!-- Product-->
-                        <article class="product wow fadeInRight">
-                            <div class="product-body">
-                                <div class="product-figure">
-                                    <a href="https://demo.s-cart.org/product/demo-alias-name-product-25/s1.html">
-                                        <img src="https://demo.s-cart.org/data/product/product-2.png"
-                                             alt="Easy Polo Black Edition 25"/>
-                                    </a>
-                                </div>
-                                <h5 class="product-title"><a
-                                        href="https://demo.s-cart.org/product/demo-alias-name-product-25/s1.html">Easy
-                                    Polo Black Edition 25</a></h5>
-
-
-                                <div class="store-url"><a href="https://demo.s-cart.org/store/root"><i
-                                        class="fa fa-shopping-bag" aria-hidden="true"></i> Store 1</a>
-                                </div>
-
-
-                                <a onClick="addToCartAjax('25','default','1')"
-                                   class="button button-lg button-secondary button-zakaria add-to-cart-list">
-                                    <i class="fa fa-cart-plus"></i> Add to cart</a>
-
-                                <div class="product-price-wrap">
-                                    <div class="product-price">$15,000</div>
-                                </div>
-                            </div>
-
-                            <div class="product-button-wrap">
-                                <div class="product-button">
-                                    <a class="button button-secondary button-zakaria"
-                                       onClick="addToCartAjax('25','wishlist','1')">
-                                        <i class="fas fa-heart"></i>
-                                    </a>
-                                </div>
-                                <div class="product-button">
-                                    <a class="button button-primary button-zakaria"
-                                       onClick="addToCartAjax('25','compare','1')">
-                                        <i class="fa fa-exchange"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="col-sm-6 col-md-4 col-lg-6 col-xl-4">
-                        <!-- Product-->
-                        <article class="product wow fadeInRight">
-                            <div class="product-body">
-                                <div class="product-figure">
-                                    <a href="https://demo.s-cart.org/product/demo-alias-name-product-23/s3.html">
-                                        <img src="https://demo.s-cart.org/data/product/product-7.png"
-                                             alt="Easy Polo Black Edition 23"/>
-                                    </a>
-                                </div>
-                                <h5 class="product-title"><a
-                                        href="https://demo.s-cart.org/product/demo-alias-name-product-23/s3.html">Easy
-                                    Polo Black Edition 23</a></h5>
-
-
-                                <div class="store-url"><a href="https://demo.s-cart.org/store/store-3"><i
-                                        class="fa fa-shopping-bag" aria-hidden="true"></i> Store 3</a>
-                                </div>
-
-
-                                <a onClick="addToCartAjax('23','default','3')"
-                                   class="button button-lg button-secondary button-zakaria add-to-cart-list">
-                                    <i class="fa fa-cart-plus"></i> Add to cart</a>
-
-                                <div class="product-price-wrap">
-                                    <div class="product-price">$20,000</div>
-                                </div>
-                            </div>
-
-                            <div class="product-button-wrap">
-                                <div class="product-button">
-                                    <a class="button button-secondary button-zakaria"
-                                       onClick="addToCartAjax('23','wishlist','3')">
-                                        <i class="fas fa-heart"></i>
-                                    </a>
-                                </div>
-                                <div class="product-button">
-                                    <a class="button button-primary button-zakaria"
-                                       onClick="addToCartAjax('23','compare','3')">
-                                        <i class="fa fa-exchange"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="col-sm-6 col-md-4 col-lg-6 col-xl-4">
-                        <!-- Product-->
-                        <article class="product wow fadeInRight">
-                            <div class="product-body">
-                                <div class="product-figure">
-                                    <a href="https://demo.s-cart.org/product/demo-alias-name-product-22/s1.html">
-                                        <img src="https://demo.s-cart.org/data/product/product-8.png"
-                                             alt="Easy Polo Black Edition 22"/>
-                                    </a>
-                                </div>
-                                <h5 class="product-title"><a
-                                        href="https://demo.s-cart.org/product/demo-alias-name-product-22/s1.html">Easy
-                                    Polo Black Edition 22</a></h5>
-
-
-                                <div class="store-url"><a href="https://demo.s-cart.org/store/root"><i
-                                        class="fa fa-shopping-bag" aria-hidden="true"></i> Store 1</a>
-                                </div>
-
-
-                                <a onClick="addToCartAjax('22','default','1')"
-                                   class="button button-lg button-secondary button-zakaria add-to-cart-list">
-                                    <i class="fa fa-cart-plus"></i> Add to cart</a>
-
-                                <div class="product-price-wrap">
-                                    <div class="product-price">$20,000</div>
-                                </div>
-                            </div>
-
-                            <div class="product-button-wrap">
-                                <div class="product-button">
-                                    <a class="button button-secondary button-zakaria"
-                                       onClick="addToCartAjax('22','wishlist','1')">
-                                        <i class="fas fa-heart"></i>
-                                    </a>
-                                </div>
-                                <div class="product-button">
-                                    <a class="button button-primary button-zakaria"
-                                       onClick="addToCartAjax('22','compare','1')">
-                                        <i class="fa fa-exchange"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="col-sm-6 col-md-4 col-lg-6 col-xl-4">
-                        <!-- Product-->
-                        <article class="product wow fadeInRight">
-                            <div class="product-body">
-                                <div class="product-figure">
-                                    <a href="https://demo.s-cart.org/product/demo-alias-name-product-21/s3.html">
-                                        <img src="https://demo.s-cart.org/data/product/product-3.png"
-                                             alt="Easy Polo Black Edition 21"/>
-                                    </a>
-                                </div>
-                                <h5 class="product-title"><a
-                                        href="https://demo.s-cart.org/product/demo-alias-name-product-21/s3.html">Easy
-                                    Polo Black Edition 21</a></h5>
-
-
-                                <div class="store-url"><a href="https://demo.s-cart.org/store/store-3"><i
-                                        class="fa fa-shopping-bag" aria-hidden="true"></i> Store 3</a>
-                                </div>
-
-
-                                <a onClick="addToCartAjax('21','default','3')"
-                                   class="button button-lg button-secondary button-zakaria add-to-cart-list">
-                                    <i class="fa fa-cart-plus"></i> Add to cart</a>
-
-                                <div class="product-price-wrap">
-                                    <div class="product-price">$15,000</div>
-                                </div>
-                            </div>
-
-                            <div class="product-button-wrap">
-                                <div class="product-button">
-                                    <a class="button button-secondary button-zakaria"
-                                       onClick="addToCartAjax('21','wishlist','3')">
-                                        <i class="fas fa-heart"></i>
-                                    </a>
-                                </div>
-                                <div class="product-button">
-                                    <a class="button button-primary button-zakaria"
-                                       onClick="addToCartAjax('21','compare','3')">
-                                        <i class="fa fa-exchange"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="col-sm-6 col-md-4 col-lg-6 col-xl-4">
-                        <!-- Product-->
-                        <article class="product wow fadeInRight">
-                            <div class="product-body">
-                                <div class="product-figure">
-                                    <a href="https://demo.s-cart.org/product/demo-alias-name-product-19/s1.html">
-                                        <img src="https://demo.s-cart.org/data/product/product-11.png"
-                                             alt="Easy Polo Black Edition 19"/>
-                                    </a>
-                                </div>
-                                <h5 class="product-title"><a
-                                        href="https://demo.s-cart.org/product/demo-alias-name-product-19/s1.html">Easy
-                                    Polo Black Edition 19</a></h5>
-
-
-                                <div class="store-url"><a href="https://demo.s-cart.org/store/root"><i
-                                        class="fa fa-shopping-bag" aria-hidden="true"></i> Store 1</a>
-                                </div>
-
-
-                                <a onClick="addToCartAjax('19','default','1')"
-                                   class="button button-lg button-secondary button-zakaria add-to-cart-list">
-                                    <i class="fa fa-cart-plus"></i> Add to cart</a>
-
-                                <div class="product-price-wrap">
-                                    <div class="product-price">$20,000</div>
-                                </div>
-                            </div>
-
-                            <div class="product-button-wrap">
-                                <div class="product-button">
-                                    <a class="button button-secondary button-zakaria"
-                                       onClick="addToCartAjax('19','wishlist','1')">
-                                        <i class="fas fa-heart"></i>
-                                    </a>
-                                </div>
-                                <div class="product-button">
-                                    <a class="button button-primary button-zakaria"
-                                       onClick="addToCartAjax('19','compare','1')">
-                                        <i class="fa fa-exchange"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="col-sm-6 col-md-4 col-lg-6 col-xl-4">
-                        <!-- Product-->
-                        <article class="product wow fadeInRight">
-                            <div class="product-body">
-                                <div class="product-figure">
-                                    <a href="https://demo.s-cart.org/product/demo-alias-name-product-17/s1.html">
-                                        <img src="https://demo.s-cart.org/data/product/product-10.png"
-                                             alt="Easy Polo Black Edition 17"/>
-                                    </a>
-                                </div>
-                                <h5 class="product-title"><a
-                                        href="https://demo.s-cart.org/product/demo-alias-name-product-17/s1.html">Easy
-                                    Polo Black Edition 17</a></h5>
-
-
-                                <div class="store-url"><a href="https://demo.s-cart.org/store/root"><i
-                                        class="fa fa-shopping-bag" aria-hidden="true"></i> Store 1</a>
-                                </div>
-
-
-                                <a onClick="addToCartAjax('17','default','1')"
-                                   class="button button-lg button-secondary button-zakaria add-to-cart-list">
-                                    <i class="fa fa-cart-plus"></i> Add to cart</a>
-
-                                <div class="product-price-wrap">
-                                    <div class="product-price">$25,000</div>
-                                </div>
-                            </div>
-
-                            <div class="product-button-wrap">
-                                <div class="product-button">
-                                    <a class="button button-secondary button-zakaria"
-                                       onClick="addToCartAjax('17','wishlist','1')">
-                                        <i class="fas fa-heart"></i>
-                                    </a>
-                                </div>
-                                <div class="product-button">
-                                    <a class="button button-primary button-zakaria"
-                                       onClick="addToCartAjax('17','compare','1')">
-                                        <i class="fa fa-exchange"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="col-sm-6 col-md-4 col-lg-6 col-xl-4">
-                        <!-- Product-->
-                        <article class="product wow fadeInRight">
-                            <div class="product-body">
-                                <div class="product-figure">
-                                    <a href="https://demo.s-cart.org/product/demo-alias-name-product-16/s1.html">
-                                        <img src="https://demo.s-cart.org/data/product/product-16.png"
-                                             alt="Easy Polo Black Edition 16"/>
-                                    </a>
-                                </div>
-                                <h5 class="product-title"><a
-                                        href="https://demo.s-cart.org/product/demo-alias-name-product-16/s1.html">Easy
-                                    Polo Black Edition 16</a></h5>
-
-
-                                <div class="store-url"><a href="https://demo.s-cart.org/store/root"><i
-                                        class="fa fa-shopping-bag" aria-hidden="true"></i> Store 1</a>
-                                </div>
-
-
-                                <div class="product-price-wrap">
-                                    <div class="product-price">Click view price</div>
-                                </div>
-                            </div>
-
-                            <span><img class="product-badge new"
-                                       src="https://demo.s-cart.org/templates/s-cart-light/images/home/group.png"
-                                       class="new" alt=""/></span>
-                            <div class="product-button-wrap">
-                                <div class="product-button">
-                                    <a class="button button-secondary button-zakaria"
-                                       onClick="addToCartAjax('16','wishlist','1')">
-                                        <i class="fas fa-heart"></i>
-                                    </a>
-                                </div>
-                                <div class="product-button">
-                                    <a class="button button-primary button-zakaria"
-                                       onClick="addToCartAjax('16','compare','1')">
-                                        <i class="fa fa-exchange"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="col-sm-6 col-md-4 col-lg-6 col-xl-4">
-                        <!-- Product-->
-                        <article class="product wow fadeInRight">
-                            <div class="product-body">
-                                <div class="product-figure">
-                                    <a href="https://demo.s-cart.org/product/demo-alias-name-product-15/s1.html">
-                                        <img src="https://demo.s-cart.org/data/product/product-15.png"
-                                             alt="Easy Polo Black Edition 15"/>
-                                    </a>
-                                </div>
-                                <h5 class="product-title"><a
-                                        href="https://demo.s-cart.org/product/demo-alias-name-product-15/s1.html">Easy
-                                    Polo Black Edition 15</a></h5>
-
-
-                                <div class="store-url"><a href="https://demo.s-cart.org/store/root"><i
-                                        class="fa fa-shopping-bag" aria-hidden="true"></i> Store 1</a>
-                                </div>
-
-
-                                <a onClick="addToCartAjax('15','default','1')"
-                                   class="button button-lg button-secondary button-zakaria add-to-cart-list">
-                                    <i class="fa fa-cart-plus"></i> Add to cart</a>
-
-                                <div class="product-price-wrap">
-                                    <div class="product-price">$15,000</div>
-                                </div>
-                            </div>
-
-                            <span><img class="product-badge new"
-                                       src="https://demo.s-cart.org/templates/s-cart-light/images/home/bundle.png"
-                                       class="new" alt=""/></span>
-                            <div class="product-button-wrap">
-                                <div class="product-button">
-                                    <a class="button button-secondary button-zakaria"
-                                       onClick="addToCartAjax('15','wishlist','1')">
-                                        <i class="fas fa-heart"></i>
-                                    </a>
-                                </div>
-                                <div class="product-button">
-                                    <a class="button button-primary button-zakaria"
-                                       onClick="addToCartAjax('15','compare','1')">
-                                        <i class="fa fa-exchange"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="col-sm-6 col-md-4 col-lg-6 col-xl-4">
-                        <!-- Product-->
-                        <article class="product wow fadeInRight">
-                            <div class="product-body">
-                                <div class="product-figure">
-                                    <a href="https://demo.s-cart.org/product/demo-alias-name-product-13/s1.html">
-                                        <img src="https://demo.s-cart.org/data/product/product-13.png"
-                                             alt="Easy Polo Black Edition 13"/>
-                                    </a>
-                                </div>
-                                <h5 class="product-title"><a
-                                        href="https://demo.s-cart.org/product/demo-alias-name-product-13/s1.html">Easy
-                                    Polo Black Edition 13</a></h5>
-
-
-                                <div class="store-url"><a href="https://demo.s-cart.org/store/root"><i
-                                        class="fa fa-shopping-bag" aria-hidden="true"></i> Store 1</a>
-                                </div>
-
-
-                                <a onClick="addToCartAjax('13','default','1')"
-                                   class="button button-lg button-secondary button-zakaria add-to-cart-list">
-                                    <i class="fa fa-cart-plus"></i> Add to cart</a>
-
-                                <div class="product-price-wrap">
-                                    <div class="product-price product-price-old">$10,000</div>
-                                    <div class="product-price">$4,000</div>
-                                </div>
-                            </div>
-
-                            <span><img class="product-badge new"
-                                       src="https://demo.s-cart.org/templates/s-cart-light/images/home/sale.png"
-                                       class="new" alt=""/></span>
-                            <div class="product-button-wrap">
-                                <div class="product-button">
-                                    <a class="button button-secondary button-zakaria"
-                                       onClick="addToCartAjax('13','wishlist','1')">
-                                        <i class="fas fa-heart"></i>
-                                    </a>
-                                </div>
-                                <div class="product-button">
-                                    <a class="button button-primary button-zakaria"
-                                       onClick="addToCartAjax('13','compare','1')">
-                                        <i class="fa fa-exchange"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="col-sm-6 col-md-4 col-lg-6 col-xl-4">
-                        <!-- Product-->
-                        <article class="product wow fadeInRight">
-                            <div class="product-body">
-                                <div class="product-figure">
-                                    <a href="https://demo.s-cart.org/product/demo-alias-name-product-11/s1.html">
-                                        <img src="https://demo.s-cart.org/data/product/product-11.png"
-                                             alt="Easy Polo Black Edition 11"/>
-                                    </a>
-                                </div>
-                                <h5 class="product-title"><a
-                                        href="https://demo.s-cart.org/product/demo-alias-name-product-11/s1.html">Easy
-                                    Polo Black Edition 11</a></h5>
-
-
-                                <div class="store-url"><a href="https://demo.s-cart.org/store/root"><i
-                                        class="fa fa-shopping-bag" aria-hidden="true"></i> Store 1</a>
-                                </div>
-
-
-                                <a onClick="addToCartAjax('11','default','1')"
-                                   class="button button-lg button-secondary button-zakaria add-to-cart-list">
-                                    <i class="fa fa-cart-plus"></i> Add to cart</a>
-
-                                <div class="product-price-wrap">
-                                    <div class="product-price product-price-old">$15,000</div>
-                                    <div class="product-price">$600</div>
-                                </div>
-                            </div>
-
-                            <span><img class="product-badge new"
-                                       src="https://demo.s-cart.org/templates/s-cart-light/images/home/sale.png"
-                                       class="new" alt=""/></span>
-                            <div class="product-button-wrap">
-                                <div class="product-button">
-                                    <a class="button button-secondary button-zakaria"
-                                       onClick="addToCartAjax('11','wishlist','1')">
-                                        <i class="fas fa-heart"></i>
-                                    </a>
-                                </div>
-                                <div class="product-button">
-                                    <a class="button button-primary button-zakaria"
-                                       onClick="addToCartAjax('11','compare','1')">
-                                        <i class="fa fa-exchange"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
+                    {% endfor %}
+{#                    <div class="col-sm-6 col-md-4 col-lg-6 col-xl-4">#}
+{#                        <!-- Product-->#}
+{#                        <article class="product wow fadeInRight">#}
+{#                            <div class="product-body">#}
+{#                                <div class="product-figure">#}
+{#                                    <a href="https://demo.s-cart.org/product/demo-alias-name-product-25/s1.html">#}
+{#                                        <img src="https://demo.s-cart.org/data/product/product-2.png"#}
+{#                                             alt="Easy Polo Black Edition 25"/>#}
+{#                                    </a>#}
+{#                                </div>#}
+{#                                <h5 class="product-title"><a#}
+{#                                        href="https://demo.s-cart.org/product/demo-alias-name-product-25/s1.html">Easy#}
+{#                                    Polo Black Edition 25</a></h5>#}
+{##}
+{##}
+{#                                <div class="store-url"><a href="https://demo.s-cart.org/store/root"><i#}
+{#                                        class="fa fa-shopping-bag" aria-hidden="true"></i> Store 1</a>#}
+{#                                </div>#}
+{##}
+{##}
+{#                                <a onClick="addToCartAjax('25','default','1')"#}
+{#                                   class="button button-lg button-secondary button-zakaria add-to-cart-list">#}
+{#                                    <i class="fa fa-cart-plus"></i> Add to cart</a>#}
+{##}
+{#                                <div class="product-price-wrap">#}
+{#                                    <div class="product-price">$15,000</div>#}
+{#                                </div>#}
+{#                            </div>#}
+{##}
+{#                            <div class="product-button-wrap">#}
+{#                                <div class="product-button">#}
+{#                                    <a class="button button-secondary button-zakaria"#}
+{#                                       onClick="addToCartAjax('25','wishlist','1')">#}
+{#                                        <i class="fas fa-heart"></i>#}
+{#                                    </a>#}
+{#                                </div>#}
+{#                                <div class="product-button">#}
+{#                                    <a class="button button-primary button-zakaria"#}
+{#                                       onClick="addToCartAjax('25','compare','1')">#}
+{#                                        <i class="fa fa-exchange"></i>#}
+{#                                    </a>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </article>#}
+{#                    </div>#}
+{#                    <div class="col-sm-6 col-md-4 col-lg-6 col-xl-4">#}
+{#                        <!-- Product-->#}
+{#                        <article class="product wow fadeInRight">#}
+{#                            <div class="product-body">#}
+{#                                <div class="product-figure">#}
+{#                                    <a href="https://demo.s-cart.org/product/demo-alias-name-product-23/s3.html">#}
+{#                                        <img src="https://demo.s-cart.org/data/product/product-7.png"#}
+{#                                             alt="Easy Polo Black Edition 23"/>#}
+{#                                    </a>#}
+{#                                </div>#}
+{#                                <h5 class="product-title"><a#}
+{#                                        href="https://demo.s-cart.org/product/demo-alias-name-product-23/s3.html">Easy#}
+{#                                    Polo Black Edition 23</a></h5>#}
+{##}
+{##}
+{#                                <div class="store-url"><a href="https://demo.s-cart.org/store/store-3"><i#}
+{#                                        class="fa fa-shopping-bag" aria-hidden="true"></i> Store 3</a>#}
+{#                                </div>#}
+{##}
+{##}
+{#                                <a onClick="addToCartAjax('23','default','3')"#}
+{#                                   class="button button-lg button-secondary button-zakaria add-to-cart-list">#}
+{#                                    <i class="fa fa-cart-plus"></i> Add to cart</a>#}
+{##}
+{#                                <div class="product-price-wrap">#}
+{#                                    <div class="product-price">$20,000</div>#}
+{#                                </div>#}
+{#                            </div>#}
+{##}
+{#                            <div class="product-button-wrap">#}
+{#                                <div class="product-button">#}
+{#                                    <a class="button button-secondary button-zakaria"#}
+{#                                       onClick="addToCartAjax('23','wishlist','3')">#}
+{#                                        <i class="fas fa-heart"></i>#}
+{#                                    </a>#}
+{#                                </div>#}
+{#                                <div class="product-button">#}
+{#                                    <a class="button button-primary button-zakaria"#}
+{#                                       onClick="addToCartAjax('23','compare','3')">#}
+{#                                        <i class="fa fa-exchange"></i>#}
+{#                                    </a>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </article>#}
+{#                    </div>#}
+{#                    <div class="col-sm-6 col-md-4 col-lg-6 col-xl-4">#}
+{#                        <!-- Product-->#}
+{#                        <article class="product wow fadeInRight">#}
+{#                            <div class="product-body">#}
+{#                                <div class="product-figure">#}
+{#                                    <a href="https://demo.s-cart.org/product/demo-alias-name-product-22/s1.html">#}
+{#                                        <img src="https://demo.s-cart.org/data/product/product-8.png"#}
+{#                                             alt="Easy Polo Black Edition 22"/>#}
+{#                                    </a>#}
+{#                                </div>#}
+{#                                <h5 class="product-title"><a#}
+{#                                        href="https://demo.s-cart.org/product/demo-alias-name-product-22/s1.html">Easy#}
+{#                                    Polo Black Edition 22</a></h5>#}
+{##}
+{##}
+{#                                <div class="store-url"><a href="https://demo.s-cart.org/store/root"><i#}
+{#                                        class="fa fa-shopping-bag" aria-hidden="true"></i> Store 1</a>#}
+{#                                </div>#}
+{##}
+{##}
+{#                                <a onClick="addToCartAjax('22','default','1')"#}
+{#                                   class="button button-lg button-secondary button-zakaria add-to-cart-list">#}
+{#                                    <i class="fa fa-cart-plus"></i> Add to cart</a>#}
+{##}
+{#                                <div class="product-price-wrap">#}
+{#                                    <div class="product-price">$20,000</div>#}
+{#                                </div>#}
+{#                            </div>#}
+{##}
+{#                            <div class="product-button-wrap">#}
+{#                                <div class="product-button">#}
+{#                                    <a class="button button-secondary button-zakaria"#}
+{#                                       onClick="addToCartAjax('22','wishlist','1')">#}
+{#                                        <i class="fas fa-heart"></i>#}
+{#                                    </a>#}
+{#                                </div>#}
+{#                                <div class="product-button">#}
+{#                                    <a class="button button-primary button-zakaria"#}
+{#                                       onClick="addToCartAjax('22','compare','1')">#}
+{#                                        <i class="fa fa-exchange"></i>#}
+{#                                    </a>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </article>#}
+{#                    </div>#}
+{#                    <div class="col-sm-6 col-md-4 col-lg-6 col-xl-4">#}
+{#                        <!-- Product-->#}
+{#                        <article class="product wow fadeInRight">#}
+{#                            <div class="product-body">#}
+{#                                <div class="product-figure">#}
+{#                                    <a href="https://demo.s-cart.org/product/demo-alias-name-product-21/s3.html">#}
+{#                                        <img src="https://demo.s-cart.org/data/product/product-3.png"#}
+{#                                             alt="Easy Polo Black Edition 21"/>#}
+{#                                    </a>#}
+{#                                </div>#}
+{#                                <h5 class="product-title"><a#}
+{#                                        href="https://demo.s-cart.org/product/demo-alias-name-product-21/s3.html">Easy#}
+{#                                    Polo Black Edition 21</a></h5>#}
+{##}
+{##}
+{#                                <div class="store-url"><a href="https://demo.s-cart.org/store/store-3"><i#}
+{#                                        class="fa fa-shopping-bag" aria-hidden="true"></i> Store 3</a>#}
+{#                                </div>#}
+{##}
+{##}
+{#                                <a onClick="addToCartAjax('21','default','3')"#}
+{#                                   class="button button-lg button-secondary button-zakaria add-to-cart-list">#}
+{#                                    <i class="fa fa-cart-plus"></i> Add to cart</a>#}
+{##}
+{#                                <div class="product-price-wrap">#}
+{#                                    <div class="product-price">$15,000</div>#}
+{#                                </div>#}
+{#                            </div>#}
+{##}
+{#                            <div class="product-button-wrap">#}
+{#                                <div class="product-button">#}
+{#                                    <a class="button button-secondary button-zakaria"#}
+{#                                       onClick="addToCartAjax('21','wishlist','3')">#}
+{#                                        <i class="fas fa-heart"></i>#}
+{#                                    </a>#}
+{#                                </div>#}
+{#                                <div class="product-button">#}
+{#                                    <a class="button button-primary button-zakaria"#}
+{#                                       onClick="addToCartAjax('21','compare','3')">#}
+{#                                        <i class="fa fa-exchange"></i>#}
+{#                                    </a>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </article>#}
+{#                    </div>#}
+{#                    <div class="col-sm-6 col-md-4 col-lg-6 col-xl-4">#}
+{#                        <!-- Product-->#}
+{#                        <article class="product wow fadeInRight">#}
+{#                            <div class="product-body">#}
+{#                                <div class="product-figure">#}
+{#                                    <a href="https://demo.s-cart.org/product/demo-alias-name-product-19/s1.html">#}
+{#                                        <img src="https://demo.s-cart.org/data/product/product-11.png"#}
+{#                                             alt="Easy Polo Black Edition 19"/>#}
+{#                                    </a>#}
+{#                                </div>#}
+{#                                <h5 class="product-title"><a#}
+{#                                        href="https://demo.s-cart.org/product/demo-alias-name-product-19/s1.html">Easy#}
+{#                                    Polo Black Edition 19</a></h5>#}
+{##}
+{##}
+{#                                <div class="store-url"><a href="https://demo.s-cart.org/store/root"><i#}
+{#                                        class="fa fa-shopping-bag" aria-hidden="true"></i> Store 1</a>#}
+{#                                </div>#}
+{##}
+{##}
+{#                                <a onClick="addToCartAjax('19','default','1')"#}
+{#                                   class="button button-lg button-secondary button-zakaria add-to-cart-list">#}
+{#                                    <i class="fa fa-cart-plus"></i> Add to cart</a>#}
+{##}
+{#                                <div class="product-price-wrap">#}
+{#                                    <div class="product-price">$20,000</div>#}
+{#                                </div>#}
+{#                            </div>#}
+{##}
+{#                            <div class="product-button-wrap">#}
+{#                                <div class="product-button">#}
+{#                                    <a class="button button-secondary button-zakaria"#}
+{#                                       onClick="addToCartAjax('19','wishlist','1')">#}
+{#                                        <i class="fas fa-heart"></i>#}
+{#                                    </a>#}
+{#                                </div>#}
+{#                                <div class="product-button">#}
+{#                                    <a class="button button-primary button-zakaria"#}
+{#                                       onClick="addToCartAjax('19','compare','1')">#}
+{#                                        <i class="fa fa-exchange"></i>#}
+{#                                    </a>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </article>#}
+{#                    </div>#}
+{#                    <div class="col-sm-6 col-md-4 col-lg-6 col-xl-4">#}
+{#                        <!-- Product-->#}
+{#                        <article class="product wow fadeInRight">#}
+{#                            <div class="product-body">#}
+{#                                <div class="product-figure">#}
+{#                                    <a href="https://demo.s-cart.org/product/demo-alias-name-product-17/s1.html">#}
+{#                                        <img src="https://demo.s-cart.org/data/product/product-10.png"#}
+{#                                             alt="Easy Polo Black Edition 17"/>#}
+{#                                    </a>#}
+{#                                </div>#}
+{#                                <h5 class="product-title"><a#}
+{#                                        href="https://demo.s-cart.org/product/demo-alias-name-product-17/s1.html">Easy#}
+{#                                    Polo Black Edition 17</a></h5>#}
+{##}
+{##}
+{#                                <div class="store-url"><a href="https://demo.s-cart.org/store/root"><i#}
+{#                                        class="fa fa-shopping-bag" aria-hidden="true"></i> Store 1</a>#}
+{#                                </div>#}
+{##}
+{##}
+{#                                <a onClick="addToCartAjax('17','default','1')"#}
+{#                                   class="button button-lg button-secondary button-zakaria add-to-cart-list">#}
+{#                                    <i class="fa fa-cart-plus"></i> Add to cart</a>#}
+{##}
+{#                                <div class="product-price-wrap">#}
+{#                                    <div class="product-price">$25,000</div>#}
+{#                                </div>#}
+{#                            </div>#}
+{##}
+{#                            <div class="product-button-wrap">#}
+{#                                <div class="product-button">#}
+{#                                    <a class="button button-secondary button-zakaria"#}
+{#                                       onClick="addToCartAjax('17','wishlist','1')">#}
+{#                                        <i class="fas fa-heart"></i>#}
+{#                                    </a>#}
+{#                                </div>#}
+{#                                <div class="product-button">#}
+{#                                    <a class="button button-primary button-zakaria"#}
+{#                                       onClick="addToCartAjax('17','compare','1')">#}
+{#                                        <i class="fa fa-exchange"></i>#}
+{#                                    </a>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </article>#}
+{#                    </div>#}
+{#                    <div class="col-sm-6 col-md-4 col-lg-6 col-xl-4">#}
+{#                        <!-- Product-->#}
+{#                        <article class="product wow fadeInRight">#}
+{#                            <div class="product-body">#}
+{#                                <div class="product-figure">#}
+{#                                    <a href="https://demo.s-cart.org/product/demo-alias-name-product-16/s1.html">#}
+{#                                        <img src="https://demo.s-cart.org/data/product/product-16.png"#}
+{#                                             alt="Easy Polo Black Edition 16"/>#}
+{#                                    </a>#}
+{#                                </div>#}
+{#                                <h5 class="product-title"><a#}
+{#                                        href="https://demo.s-cart.org/product/demo-alias-name-product-16/s1.html">Easy#}
+{#                                    Polo Black Edition 16</a></h5>#}
+{##}
+{##}
+{#                                <div class="store-url"><a href="https://demo.s-cart.org/store/root"><i#}
+{#                                        class="fa fa-shopping-bag" aria-hidden="true"></i> Store 1</a>#}
+{#                                </div>#}
+{##}
+{##}
+{#                                <div class="product-price-wrap">#}
+{#                                    <div class="product-price">Click view price</div>#}
+{#                                </div>#}
+{#                            </div>#}
+{##}
+{#                            <span><img class="product-badge new"#}
+{#                                       src="https://demo.s-cart.org/templates/s-cart-light/images/home/group.png"#}
+{#                                       class="new" alt=""/></span>#}
+{#                            <div class="product-button-wrap">#}
+{#                                <div class="product-button">#}
+{#                                    <a class="button button-secondary button-zakaria"#}
+{#                                       onClick="addToCartAjax('16','wishlist','1')">#}
+{#                                        <i class="fas fa-heart"></i>#}
+{#                                    </a>#}
+{#                                </div>#}
+{#                                <div class="product-button">#}
+{#                                    <a class="button button-primary button-zakaria"#}
+{#                                       onClick="addToCartAjax('16','compare','1')">#}
+{#                                        <i class="fa fa-exchange"></i>#}
+{#                                    </a>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </article>#}
+{#                    </div>#}
+{#                    <div class="col-sm-6 col-md-4 col-lg-6 col-xl-4">#}
+{#                        <!-- Product-->#}
+{#                        <article class="product wow fadeInRight">#}
+{#                            <div class="product-body">#}
+{#                                <div class="product-figure">#}
+{#                                    <a href="https://demo.s-cart.org/product/demo-alias-name-product-15/s1.html">#}
+{#                                        <img src="https://demo.s-cart.org/data/product/product-15.png"#}
+{#                                             alt="Easy Polo Black Edition 15"/>#}
+{#                                    </a>#}
+{#                                </div>#}
+{#                                <h5 class="product-title"><a#}
+{#                                        href="https://demo.s-cart.org/product/demo-alias-name-product-15/s1.html">Easy#}
+{#                                    Polo Black Edition 15</a></h5>#}
+{##}
+{##}
+{#                                <div class="store-url"><a href="https://demo.s-cart.org/store/root"><i#}
+{#                                        class="fa fa-shopping-bag" aria-hidden="true"></i> Store 1</a>#}
+{#                                </div>#}
+{##}
+{##}
+{#                                <a onClick="addToCartAjax('15','default','1')"#}
+{#                                   class="button button-lg button-secondary button-zakaria add-to-cart-list">#}
+{#                                    <i class="fa fa-cart-plus"></i> Add to cart</a>#}
+{##}
+{#                                <div class="product-price-wrap">#}
+{#                                    <div class="product-price">$15,000</div>#}
+{#                                </div>#}
+{#                            </div>#}
+{##}
+{#                            <span><img class="product-badge new"#}
+{#                                       src="https://demo.s-cart.org/templates/s-cart-light/images/home/bundle.png"#}
+{#                                       class="new" alt=""/></span>#}
+{#                            <div class="product-button-wrap">#}
+{#                                <div class="product-button">#}
+{#                                    <a class="button button-secondary button-zakaria"#}
+{#                                       onClick="addToCartAjax('15','wishlist','1')">#}
+{#                                        <i class="fas fa-heart"></i>#}
+{#                                    </a>#}
+{#                                </div>#}
+{#                                <div class="product-button">#}
+{#                                    <a class="button button-primary button-zakaria"#}
+{#                                       onClick="addToCartAjax('15','compare','1')">#}
+{#                                        <i class="fa fa-exchange"></i>#}
+{#                                    </a>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </article>#}
+{#                    </div>#}
+{#                    <div class="col-sm-6 col-md-4 col-lg-6 col-xl-4">#}
+{#                        <!-- Product-->#}
+{#                        <article class="product wow fadeInRight">#}
+{#                            <div class="product-body">#}
+{#                                <div class="product-figure">#}
+{#                                    <a href="https://demo.s-cart.org/product/demo-alias-name-product-13/s1.html">#}
+{#                                        <img src="https://demo.s-cart.org/data/product/product-13.png"#}
+{#                                             alt="Easy Polo Black Edition 13"/>#}
+{#                                    </a>#}
+{#                                </div>#}
+{#                                <h5 class="product-title"><a#}
+{#                                        href="https://demo.s-cart.org/product/demo-alias-name-product-13/s1.html">Easy#}
+{#                                    Polo Black Edition 13</a></h5>#}
+{##}
+{##}
+{#                                <div class="store-url"><a href="https://demo.s-cart.org/store/root"><i#}
+{#                                        class="fa fa-shopping-bag" aria-hidden="true"></i> Store 1</a>#}
+{#                                </div>#}
+{##}
+{##}
+{#                                <a onClick="addToCartAjax('13','default','1')"#}
+{#                                   class="button button-lg button-secondary button-zakaria add-to-cart-list">#}
+{#                                    <i class="fa fa-cart-plus"></i> Add to cart</a>#}
+{##}
+{#                                <div class="product-price-wrap">#}
+{#                                    <div class="product-price product-price-old">$10,000</div>#}
+{#                                    <div class="product-price">$4,000</div>#}
+{#                                </div>#}
+{#                            </div>#}
+{##}
+{#                            <span><img class="product-badge new"#}
+{#                                       src="https://demo.s-cart.org/templates/s-cart-light/images/home/sale.png"#}
+{#                                       class="new" alt=""/></span>#}
+{#                            <div class="product-button-wrap">#}
+{#                                <div class="product-button">#}
+{#                                    <a class="button button-secondary button-zakaria"#}
+{#                                       onClick="addToCartAjax('13','wishlist','1')">#}
+{#                                        <i class="fas fa-heart"></i>#}
+{#                                    </a>#}
+{#                                </div>#}
+{#                                <div class="product-button">#}
+{#                                    <a class="button button-primary button-zakaria"#}
+{#                                       onClick="addToCartAjax('13','compare','1')">#}
+{#                                        <i class="fa fa-exchange"></i>#}
+{#                                    </a>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </article>#}
+{#                    </div>#}
+{#                    <div class="col-sm-6 col-md-4 col-lg-6 col-xl-4">#}
+{#                        <!-- Product-->#}
+{#                        <article class="product wow fadeInRight">#}
+{#                            <div class="product-body">#}
+{#                                <div class="product-figure">#}
+{#                                    <a href="https://demo.s-cart.org/product/demo-alias-name-product-11/s1.html">#}
+{#                                        <img src="https://demo.s-cart.org/data/product/product-11.png"#}
+{#                                             alt="Easy Polo Black Edition 11"/>#}
+{#                                    </a>#}
+{#                                </div>#}
+{#                                <h5 class="product-title"><a#}
+{#                                        href="https://demo.s-cart.org/product/demo-alias-name-product-11/s1.html">Easy#}
+{#                                    Polo Black Edition 11</a></h5>#}
+{##}
+{##}
+{#                                <div class="store-url"><a href="https://demo.s-cart.org/store/root"><i#}
+{#                                        class="fa fa-shopping-bag" aria-hidden="true"></i> Store 1</a>#}
+{#                                </div>#}
+{##}
+{##}
+{#                                <a onClick="addToCartAjax('11','default','1')"#}
+{#                                   class="button button-lg button-secondary button-zakaria add-to-cart-list">#}
+{#                                    <i class="fa fa-cart-plus"></i> Add to cart</a>#}
+{##}
+{#                                <div class="product-price-wrap">#}
+{#                                    <div class="product-price product-price-old">$15,000</div>#}
+{#                                    <div class="product-price">$600</div>#}
+{#                                </div>#}
+{#                            </div>#}
+{##}
+{#                            <span><img class="product-badge new"#}
+{#                                       src="https://demo.s-cart.org/templates/s-cart-light/images/home/sale.png"#}
+{#                                       class="new" alt=""/></span>#}
+{#                            <div class="product-button-wrap">#}
+{#                                <div class="product-button">#}
+{#                                    <a class="button button-secondary button-zakaria"#}
+{#                                       onClick="addToCartAjax('11','wishlist','1')">#}
+{#                                        <i class="fas fa-heart"></i>#}
+{#                                    </a>#}
+{#                                </div>#}
+{#                                <div class="product-button">#}
+{#                                    <a class="button button-primary button-zakaria"#}
+{#                                       onClick="addToCartAjax('11','compare','1')">#}
+{#                                        <i class="fa fa-exchange"></i>#}
+{#                                    </a>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </article>#}
+{#                    </div>#}
                 </div>
 
                 <div class="pagination-wrap">

@@ -2,10 +2,10 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.views.generic import TemplateView
-from home.models import CategoryTranslate, Category, ProductTranslate, ProductTypeTranslate
+from home.models import CategoryTranslate, Category, ProductTranslate, Product
 
 
-class HomeView(TemplateView):
+class CategoryView(TemplateView):
     template_name = 'home/index.html'
 
     def get_header(seft, request):
@@ -13,12 +13,9 @@ class HomeView(TemplateView):
 
     def get_context_data(self, **kwargs):
         categories = CategoryTranslate.objects.all()
-        products = ProductTranslate.objects.all()
-        product_types = ProductTypeTranslate.objects.all()
+        products = Product.objects.all()
         context = {
             'categories': categories.filter(lang_code='vn'),
-            'products': products.filter(lang_code='vn'),
-            'product_types': product_types
-            # 'product_types': product_types.filter(lang_code='vn')
+            'products': products.filter(id=kwargs['id'])
         }
         return context
