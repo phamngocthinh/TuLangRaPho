@@ -16,6 +16,6 @@ class CategoryView(TemplateView):
         products = Product.objects.all()
         context = {
             'categories': categories.filter(lang_code='vn'),
-            'products': products.filter(id=kwargs['id'])
+            'products': products.filter(id=kwargs.get('id'))
         }
         return context
