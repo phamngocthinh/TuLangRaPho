@@ -13,7 +13,7 @@
                         <ul class="list-shop-filter">
                           {% for c in categories %}
                             <li class="product-minimal-title active"><a
-                                href="/category/{{ c.category_id }}"> {{ c.category_name }}</a></li>
+                                href="{% url 'category' id=c.category_id %}"> {{ c.category_name }}</a></li>
                           {% endfor %}
                         </ul>
                     </div>
