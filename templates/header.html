@@ -1,4 +1,5 @@
 <!-- Page Header-->
+{% load static %}
 <header class="section page-header">
     <!-- RD Navbar-->
     <div class="rd-navbar-wrap">
@@ -44,46 +45,19 @@
                                 <a class="rd-nav-link"
                                    href="/contact">Contact us</a>
                             </li>
-
-                            <li class="rd-nav-item"><a class="rd-nav-link" href="#"><i class="fa fa-lock"></i>
-                                Account</a>
+                            <li class="rd-nav-item rd-navbar--has-dropdown rd-navbar-submenu">
+                                <a class="rd-nav-link" href="#">
+                                    <img src="https://demo.s-cart.org/data/language/flag_uk.png" style="height: 25px;"> <i class="fas fa-caret-down"></i>
+                                </a><span class="rd-navbar-submenu-toggle"></span>
                                 <ul class="rd-menu rd-navbar-dropdown">
                                     <li class="rd-dropdown-item">
-                                        <a class="rd-dropdown-link"
-                                           href="https://demo.s-cart.org/member/login.html"><i
-                                                class="fa fa-user"></i> Login</a>
-                                    </li>
-                                    <li class="rd-dropdown-item">
-                                        <a class="rd-dropdown-link"
-                                           href="https://demo.s-cart.org/plugin/login_socialite/facebook"><i
-                                                class="fab fa-facebook"></i>
-                                            Login facebook</a>
-                                    </li>
-                                    <li class="rd-dropdown-item">
-                                        <a class="rd-dropdown-link"
-                                           href="https://demo.s-cart.org/plugin/login_socialite/google"><i
-                                                class="fab fa-google-plus"></i>
-                                            Login google</a>
-                                    </li>
-                                    <li class="rd-dropdown-item">
-                                        <a class="rd-dropdown-link"
-                                           href="https://demo.s-cart.org/plugin/login_socialite/github"><i
-                                                class="fab fa-github"></i>
-                                            Login github</a>
-                                    </li>
-
-                                    <li class="rd-dropdown-item">
-                                        <a class="rd-dropdown-link" href="https://demo.s-cart.org/wishlst.html"><i
-                                                class="fas fa-heart"></i> Wishlist
-                                            <span class="count sc-wishlist"
-                                                  id="shopping-wishlist">0</span>
+                                        <a class="rd-dropdown-link" href="https://demo.s-cart.org/locale/en">
+                                            <img src="{% static 'images/flag_uk.png' %}" style="height: 25px;"> English
                                         </a>
                                     </li>
                                     <li class="rd-dropdown-item">
-                                        <a class="rd-dropdown-link" href="https://demo.s-cart.org/compare.html"><i
-                                                class="fa fa-exchange"></i> Compare
-                                            <span class="count sc-compare"
-                                                  id="shopping-compare">0</span>
+                                        <a class="rd-dropdown-link" href="https://demo.s-cart.org/locale/vi">
+                                            <img src="{% static 'images/flag_vn.png' %}" style="height: 25px;"> Tiếng Việt
                                         </a>
                                     </li>
                                 </ul>
