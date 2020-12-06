@@ -18,7 +18,6 @@ class HomeView(TemplateView):
         context = {
             'categories': categories.filter(lang_code='vn'),
             'products': products.filter(lang_code='vn'),
-            'product_types': product_types
-            # 'product_types': product_types.filter(lang_code='vn')
+            'product_types': product_types.filter(lang_code='vn')
         }
         return context

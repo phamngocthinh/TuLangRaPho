@@ -18,7 +18,7 @@
                         </ul>
                     </div>
                     <div class="aside-item col-sm-6 col-lg-12">
-                        <h6 class="aside-title">Brands</h6>
+                        <h6 class="aside-title">Types</h6>
                         <div class="row row-10 row-lg-20 gutters-10">
                             <div class="group-sm group-tags">
                                 {% for product_type in product_types %}
@@ -321,7 +321,7 @@
                                     </a>
                                 </div>
                                 <h5 class="product-title"><a
-                                        href="{% url 'product_detail' id=product.id %}">{{ product.id }}</a></h5>
+                                        href="{% url 'product_detail' id=product.id %}">{{ product.product_name }}</a></h5>
 
 
                                 <div class="store-url"><a href="https://demo.s-cart.org/store/store-3"><i
