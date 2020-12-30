@@ -1,3 +1,4 @@
+{% load static %}
 <!-- New Products-->
 <section class="section section-xxl bg-default text-md-left">
     <div class="container">
@@ -316,7 +317,7 @@
                             <div class="product-body">
                                 <div class="product-figure">
                                     <a href="https://demo.s-cart.org/product/demo-alias-name-product-26/s3.html">
-                                        <img src="https://demo.s-cart.org/data/product/product-11.png"
+                                        <img src="{% static product.product_id.image_path %}"
                                              alt="Easy Polo Black Edition 26"/>
                                     </a>
                                 </div>
@@ -324,9 +325,9 @@
                                         href="{% url 'product_detail' id=product.id %}">{{ product.product_name }}</a></h5>
 
 
-                                <div class="store-url"><a href="https://demo.s-cart.org/store/store-3"><i
-                                        class="fa fa-shopping-bag" aria-hidden="true"></i>{{ product.id }}</a>
-                                </div>
+{#                                <div class="store-url"><a href="https://demo.s-cart.org/store/store-3"><i#}
+{#                                        class="fa fa-shopping-bag" aria-hidden="true"></i>{{ product.id }}</a>#}
+{#                                </div>#}
 
 
                                 <a onClick="addToCartAjax('26','default','3')"
@@ -335,7 +336,9 @@
 
                                 <div class="product-price-wrap">
                                     <div class="product-price product-price-old">$15,000</div>
-                                    <div class="product-price">$4,000</div>
+{#                                    {% with price=product.product_id.price.toLocaleString('vi-VN', {style: 'currency',currency: 'VND'}) %}#}
+{#                                        <div class="product-price">{{ price }}</div>#}
+{#                                    {% endwith %}#}
                                 </div>
                             </div>
 

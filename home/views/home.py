@@ -13,7 +13,7 @@ class HomeView(TemplateView):
 
     def get_context_data(self, **kwargs):
         categories = CategoryTranslate.objects.all()
-        products = ProductTranslate.objects.all()
+        products = ProductTranslate.objects.all().select_related('product_id')
         product_types = ProductTypeTranslate.objects.all()
         context = {
             'categories': categories.filter(lang_code='vn'),
