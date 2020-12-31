@@ -1,4 +1,5 @@
 {% load static %}
+{% load humanize %}
 <!-- New Products-->
 <section class="section section-xxl bg-default text-md-left">
     <div class="container">
@@ -237,7 +238,7 @@
 
                 <div class="product-top-panel group-md">
                     <p class="product-top-panel-title">
-                        Showing <b>1</b>-<b>12</b> of <b>21</b> items</b>
+                        Showing <b>1</b>-<b>12</b> of <b>{{ products.count }}</b> items</b>
                     </p>
                     <form action="" method="GET" id="filter_sort">
 
@@ -266,50 +267,6 @@
 
 
                 <div class="row row-30 row-lg-50">
-{#                    <div class="col-sm-6 col-md-4 col-lg-6 col-xl-4">#}
-{#                        <!-- Product-->#}
-{#                        <article class="product wow fadeInRight">#}
-{#                            <div class="product-body">#}
-{#                                <div class="product-figure">#}
-{#                                    <a href="https://demo.s-cart.org/product/dfsdfsdfsdf/s2.html">#}
-{#                                        <img src="https://demo.s-cart.org/data/product/2/CE91949C-B13B-42A1-8B4B-9A663352C160.png"#}
-{#                                             alt="abc"/>#}
-{#                                    </a>#}
-{#                                </div>#}
-{#                                <h5 class="product-title"><a#}
-{#                                        href="https://demo.s-cart.org/product/dfsdfsdfsdf/s2.html">abc</a></h5>#}
-{##}
-{##}
-{#                                <div class="store-url"><a href="https://demo.s-cart.org/store/store-2"><i#}
-{#                                        class="fa fa-shopping-bag" aria-hidden="true"></i> Store 2</a>#}
-{#                                </div>#}
-{##}
-{##}
-{#                                <a onClick="addToCartAjax('27','default','2')"#}
-{#                                   class="button button-lg button-secondary button-zakaria add-to-cart-list">#}
-{#                                    <i class="fa fa-cart-plus"></i> Add to cart</a>#}
-{##}
-{#                                <div class="product-price-wrap">#}
-{#                                    <div class="product-price">$200,000</div>#}
-{#                                </div>#}
-{#                            </div>#}
-{##}
-{#                            <div class="product-button-wrap">#}
-{#                                <div class="product-button">#}
-{#                                    <a class="button button-secondary button-zakaria"#}
-{#                                       onClick="addToCartAjax('27','wishlist','2')">#}
-{#                                        <i class="fas fa-heart"></i>#}
-{#                                    </a>#}
-{#                                </div>#}
-{#                                <div class="product-button">#}
-{#                                    <a class="button button-primary button-zakaria"#}
-{#                                       onClick="addToCartAjax('27','compare','2')">#}
-{#                                        <i class="fa fa-exchange"></i>#}
-{#                                    </a>#}
-{#                                </div>#}
-{#                            </div>#}
-{#                        </article>#}
-{#                    </div>#}
                     {% for product in products %}
                     <div class="col-sm-6 col-md-4 col-lg-6 col-xl-4">
                         <!-- Product-->
@@ -329,22 +286,22 @@
 {#                                        class="fa fa-shopping-bag" aria-hidden="true"></i>{{ product.id }}</a>#}
 {#                                </div>#}
 
-
                                 <a onClick="addToCartAjax('26','default','3')"
                                    class="button button-lg button-secondary button-zakaria add-to-cart-list">
                                     <i class="fa fa-cart-plus"></i> Add to cart</a>
 
                                 <div class="product-price-wrap">
+                                    {% if product.product_id.price > 200000 %}
                                     <div class="product-price product-price-old">450,000 VND</div>
-{#                                    {% with price=product.product_id.price.toLocaleString('vi-VN', {style: 'currency',currency: 'VND'}) %}#}
-                                        <div class="product-price">{{ product.product_id.price }} VND</div>
-{#                                    {% endwith %}#}
+                                    {% endif %}
+                                    <div class="product-price">{{ product.product_id.price|intcomma }} VND</div>
                                 </div>
                             </div>
-
+                            {% if product.product_id.price > 200000 %}
                             <span><img class="product-badge new"
                                        src="https://demo.s-cart.org/templates/s-cart-light/images/home/sale.png"
                                        class="new" alt=""/></span>
+                            {% endif %}
                             <div class="product-button-wrap">
                                 <div class="product-button">
                                     <a class="button button-secondary button-zakaria"
