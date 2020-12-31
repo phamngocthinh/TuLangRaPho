@@ -13,11 +13,12 @@ class HomeView(TemplateView):
 
     def get_context_data(self, **kwargs):
         categories = CategoryTranslate.objects.all()
-        products = ProductTranslate.objects.all().select_related('product_id')
+        products = ProductTranslate.objects.all().filter(lang_code='vn').select_related('product_id')
         product_types = ProductTypeTranslate.objects.all()
         context = {
             'categories': categories.filter(lang_code='vn'),
-            'products': products.filter(lang_code='vn'),
-            'product_types': product_types.filter(lang_code='vn')
+            'products': products,
+            'product_types': product_types.filter(lang_code='vn'),
+            'special_products': products.order_by('product_id__rank')[:10]
         }
         return context
