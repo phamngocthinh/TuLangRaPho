@@ -1,12 +1,14 @@
+{% load static %}
+{% load humanize %}
 <section class="section section-sm section-first bg-default">
     <div class="container">
+        {% with product_detail|first as product %}
         <div class="row row-30">
             <div class="col-lg-6">
                 <div class="slick-vertical slick-product">
                     <!-- Slick Carousel-->
                     <div class="carousel-parent slick-initialized slick-slider" id="carousel-parent" data-items="1"
                          data-swipe="true" data-child="#child-carousel" data-for="#child-carousel">
-
                         <div aria-live="polite" class="slick-list draggable">
                             <div class="slick-track"
                                  style="opacity: 1; width: 502px; transform: translate3d(0px, 0px, 0px);"
@@ -15,7 +17,7 @@
                                      data-slick-index="0" aria-hidden="false" tabindex="-1" role="option"
                                      aria-describedby="slick-slide00">
                                     <div class="slick-product-figure"><img
-                                            src="https://demo.s-cart.org/data/product/product-11.png" alt="" width="530"
+                                            src={% static product.product_id.image_path %} alt="" width="530"
                                             height="480">
                                     </div>
                                 </div>
@@ -31,12 +33,11 @@
                     <input type="hidden" name="product_id" id="product-detail-id" value="26">
                     <input type="hidden" name="storeId" id="product-detail-storeId" value="3">
                     <div class="single-product">
-                        <h3 class="text-transform-none font-weight-medium" id="product-detail-name">Easy Polo Black
-                            Edition 26</h3>
+                        <h3 class="text-transform-none font-weight-medium" id="product-detail-name">{{ product.product_name}}</h3>
 
-                        <div class="store-url"><a href="https://demo.s-cart.org/store/store-3"><i
-                                class="fa fa-shopping-bag" aria-hidden="true"></i> Store 3</a>
-                        </div>
+{#                        <div class="store-url"><a href="https://demo.s-cart.org/store/store-3"><i#}
+{#                                class="fa fa-shopping-bag" aria-hidden="true"></i> Store 3</a>#}
+{#                        </div>#}
 
                         <p>
                             SKU: <span id="product-detail-model">LFFKKBAY</span>
@@ -44,16 +45,15 @@
 
                         <div class="group-md group-middle">
                             <div class="single-product-price" id="product-detail-price">
-                                <span class="sc-new-price">$4,000</span>
-                                <span class="sc-old-price">$15,000</span>
+                                <span class="sc-new-price">{{ product.product_id.price|intcomma }} VND</span>
+                                {% if product.product_id.price > 200000 %}
+                                <span class="sc-old-price">450,000 VND</span>
+                                {% endif %}
                                 (Price without taxes)
-
-
                             </div>
                         </div>
 
                         <hr class="hr-gray-100">
-
                         <div class="group-xs group-middle">
                             <div class="product-stepper">
                                 <div class="stepper "><input class="form-input stepper-input" name="qty" type="number"
@@ -70,24 +70,17 @@
                         <div id="product-detail-attr">
 
                         </div>
-
                         <div>
                             Stock status:
-                            <span id="stock_status">
-
-                            In stock
-
-                    </span>
+                            <span id="stock_status">In stock</span>
                         </div>
-
-                        Category:
-                        <a href="https://demo.s-cart.org/category/kid-wear.html">Kid's Wear</a>,
-
+                            Category:
+                            <a href="{% url 'category' id=category.category_id %}">{{ category.category_name }}</a>
                         <div>
                             Brand:
                             <span id="product-detail-brand">
-                        <a href="https://demo.s-cart.org/brand/husq.html">Husq</a>
-                    </span>
+                            <a href="https://demo.s-cart.org/brand/husq.html">Husq</a>
+                            </span>
                         </div>
 
                         <hr class="hr-gray-100">
@@ -106,7 +99,7 @@
                 </form>
             </div>
         </div>
-
+        {% endwith %}
         <!-- Bootstrap tabs-->
 {#        <div class="tabs-custom tabs-horizontal tabs-line" id="tabs-1">#}
 {#            <!-- Nav tabs-->#}

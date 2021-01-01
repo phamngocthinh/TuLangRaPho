@@ -199,7 +199,7 @@
                         <article class="product wow fadeInRight">
                             <div class="product-body">
                                 <div class="product-figure">
-                                    <a href="https://demo.s-cart.org/product/demo-alias-name-product-26/s3.html">
+                                    <a href="{% url 'product_detail' id=product.product_id.id %}">
                                         <img src="{% static product.product_id.image_path %}"
                                              alt="Easy Polo Black Edition 26"/>
                                     </a>

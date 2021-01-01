@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.views.generic import TemplateView
-from home.models import Product, ProductTranslate
+from home.models import Product, ProductTranslate, Category, CategoryTranslate
 
 
 class ProductDetailView(TemplateView):
@@ -12,9 +12,11 @@ class ProductDetailView(TemplateView):
         return render(request, seft.template_name)
 
     def get_context_data(self, **kwargs):
-        # product_detail = Product.objects.all()
-        product_translates = ProductTranslate.objects.filter(product_id=kwargs.get('id'))
+        product = Product.objects.all()
+        product_translates = ProductTranslate.objects.filter(product_id=kwargs.get('id'), lang_code='vn', product_id__in=product.values('id'))
+        category = CategoryTranslate.objects.filter(category_id=product_translates[0].product_id.category_id, lang_code='vn')[0]
         context = {
-            'product_detail': product_translates.filter(lang_code='vn')
+            'product_detail': product_translates,
+            'category': category
         }
         return context
