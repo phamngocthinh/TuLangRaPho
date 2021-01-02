@@ -19,6 +19,6 @@ class HomeView(TemplateView):
             'categories': categories.filter(lang_code='vn'),
             'products': products,
             'product_types': product_types.filter(lang_code='vn'),
-            'special_products': products.order_by('product_id__rank')[:10]
+            'special_products': products.order_by('product_id__rank')[:5]
         }
         return context
