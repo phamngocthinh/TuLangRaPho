@@ -1,14 +1,11 @@
 {% load static %}
 {% load humanize %}
-<!-- New Products-->
 <section class="section section-xxl bg-default text-md-left">
     <div class="container">
         <div class="row row-50">
             <!--main left-->
             <div class="col-lg-4 col-xl-3">
                 <div class="aside row row-30 row-md-50 justify-content-md-between">
-
-
                     <!--Module left -->
                     <div class="aside-item col-sm-6 col-md-5 col-lg-12">
                         <h6 class="aside-title">Categories</h6>
@@ -18,25 +15,6 @@
                                 href="{% url 'category' id=category.category_id %}"> {{ category.category_name }}</a></li>
                           {% endfor %}
                         </ul>
-                    </div>
-                    <div class="aside-item col-sm-6 col-lg-12">
-                        <h6 class="aside-title">Types</h6>
-                        <div class="row row-10 row-lg-20 gutters-10">
-                            <div class="group-sm group-tags">
-                                {% for product_type in product_types %}
-                                    <a class="link-tag" href="{% url 'type' id=product_type.type_id %}"> {{ product_type.type_name }}</a>
-                                {% endfor %}
-{#                                <a class="link-tag" href="https://demo.s-cart.org/brand/husq.html"> Husq</a>#}
-{#                                <a class="link-tag" href="https://demo.s-cart.org/brand/ideal.html"> Ideal</a>#}
-{#                                <a class="link-tag" href="https://demo.s-cart.org/brand/apex.html"> Apex</a>#}
-{#                                <a class="link-tag" href="https://demo.s-cart.org/brand/cst.html"> CST</a>#}
-{#                                <a class="link-tag" href="https://demo.s-cart.org/brand/klein.html"> Klein</a>#}
-{#                                <a class="link-tag" href="https://demo.s-cart.org/brand/metabo.html"> Metabo</a>#}
-{#                                <a class="link-tag" href="https://demo.s-cart.org/brand/avatar.html"> Avatar</a>#}
-{#                                <a class="link-tag" href="https://demo.s-cart.org/brand/brand-ka.html"> Brand KA</a>#}
-                            </div>
-                            <!--brands_products-->
-                        </div>
                     </div>
                     <!--/brands_products-->
                     <div class="aside-item col-sm-6 col-lg-12">
@@ -70,104 +48,17 @@
                             {% endfor %}
                         </div>
                     </div>
-                    <!--/product special-->
-{#                    <div class="aside-item col-sm-6 col-lg-12">#}
-{#                        <h6 class="aside-title">Products recently viewed</h6>#}
-{#                        <!--last_view_product-->#}
-{#                        <div class="row row-20 row-lg-30 gutters-10">#}
-{#                            <div class="col-4 col-lg-12">#}
-{#                                <!-- Post Minimal-->#}
-{#                                <article class="post post-minimal">#}
-{#                                    <div class="unit unit-spacing-sm flex-column flex-lg-row align-items-lg-center">#}
-{#                                        <div class="unit-left"><a class="post-minimal-figure"#}
-{#                                                                  href="https://demo.s-cart.org/product/demo-alias-name-product-26/s3.html">#}
-{#                                            <img src="https://demo.s-cart.org/data/product/product-11.png" alt=""#}
-{#                                                 width="106" height="104"></a></div>#}
-{#                                        <div class="unit-body">#}
-{#                                            <p class="post-minimal-title"><a#}
-{#                                                    href="https://demo.s-cart.org/product/demo-alias-name-product-26/s3.html">Easy#}
-{#                                                Polo Black Edition 26</a></p>#}
-{#                                            <div class="post-minimal-time">#}
-{#                                                <time datetime="2020-11-20 12:46:11">2020-11-20 12:46:11</time>#}
-{#                                            </div>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                </article>#}
-{#                            </div>#}
-{#                            <div class="col-4 col-lg-12">#}
-{#                                <!-- Post Minimal-->#}
-{#                                <article class="post post-minimal">#}
-{#                                    <div class="unit unit-spacing-sm flex-column flex-lg-row align-items-lg-center">#}
-{#                                        <div class="unit-left"><a class="post-minimal-figure"#}
-{#                                                                  href="https://demo.s-cart.org/product/demo-alias-name-product-22/s1.html">#}
-{#                                            <img src="https://demo.s-cart.org/data/product/product-8.png" alt=""#}
-{#                                                 width="106" height="104"></a></div>#}
-{#                                        <div class="unit-body">#}
-{#                                            <p class="post-minimal-title"><a#}
-{#                                                    href="https://demo.s-cart.org/product/demo-alias-name-product-22/s1.html">Easy#}
-{#                                                Polo Black Edition 22</a></p>#}
-{#                                            <div class="post-minimal-time">#}
-{#                                                <time datetime="2020-11-19 10:25:52">2020-11-19 10:25:52</time>#}
-{#                                            </div>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                </article>#}
-{#                            </div>#}
-{#                            <div class="col-4 col-lg-12">#}
-{#                                <!-- Post Minimal-->#}
-{#                                <article class="post post-minimal">#}
-{#                                    <div class="unit unit-spacing-sm flex-column flex-lg-row align-items-lg-center">#}
-{#                                        <div class="unit-left"><a class="post-minimal-figure"#}
-{#                                                                  href="https://demo.s-cart.org/product/demo-alias-name-product-17/s1.html">#}
-{#                                            <img src="https://demo.s-cart.org/data/product/product-10.png" alt=""#}
-{#                                                 width="106" height="104"></a></div>#}
-{#                                        <div class="unit-body">#}
-{#                                            <p class="post-minimal-title"><a#}
-{#                                                    href="https://demo.s-cart.org/product/demo-alias-name-product-17/s1.html">Easy#}
-{#                                                Polo Black Edition 17</a></p>#}
-{#                                            <div class="post-minimal-time">#}
-{#                                                <time datetime="2020-11-19 10:21:15">2020-11-19 10:21:15</time>#}
-{#                                            </div>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                </article>#}
-{#                            </div>#}
-{#                            <div class="col-4 col-lg-12">#}
-{#                                <!-- Post Minimal-->#}
-{#                                <article class="post post-minimal">#}
-{#                                    <div class="unit unit-spacing-sm flex-column flex-lg-row align-items-lg-center">#}
-{#                                        <div class="unit-left"><a class="post-minimal-figure"#}
-{#                                                                  href="https://demo.s-cart.org/product/demo-alias-name-product-23/s3.html">#}
-{#                                            <img src="https://demo.s-cart.org/data/product/product-7.png" alt=""#}
-{#                                                 width="106" height="104"></a></div>#}
-{#                                        <div class="unit-body">#}
-{#                                            <p class="post-minimal-title"><a#}
-{#                                                    href="https://demo.s-cart.org/product/demo-alias-name-product-23/s3.html">Easy#}
-{#                                                Polo Black Edition 23</a></p>#}
-{#                                            <div class="post-minimal-time">#}
-{#                                                <time datetime="2020-11-19 10:20:48">2020-11-19 10:20:48</time>#}
-{#                                            </div>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                </article>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                    </div>#}
                     <!--/last_view_product-->
                     <!--//Module left -->
-
                 </div>
             </div>
             <!--//main left-->                    <!--main center-->
             <div class="col-lg-8 col-xl-9">
-
-
                 <div class="product-top-panel group-md">
                     <p class="product-top-panel-title">
                         Showing <b>1</b>-<b>12</b> of <b>{{ products.count }}</b> items</b>
                     </p>
                     <form action="" method="GET" id="filter_sort">
-
                         <select class="form-control" name="filter_sort">
                             <option value="">Select filter sort</option>
                             <option value="price_asc">
@@ -191,7 +82,6 @@
                     </form>
                 </div>
 
-
                 <div class="row row-30 row-lg-50">
                     {% for product in products %}
                     <div class="col-sm-6 col-md-4 col-lg-6 col-xl-4">
@@ -206,12 +96,6 @@
                                 </div>
                                 <h5 class="product-title"><a
                                         href="{% url 'product_detail' id=product.id %}">{{ product.product_name }}</a></h5>
-
-
-{#                                <div class="store-url"><a href="https://demo.s-cart.org/store/store-3"><i#}
-{#                                        class="fa fa-shopping-bag" aria-hidden="true"></i>{{ product.id }}</a>#}
-{#                                </div>#}
-
                                 <a onClick="addToCartAjax('26','default','3')"
                                    class="button button-lg button-secondary button-zakaria add-to-cart-list">
                                     <i class="fa fa-cart-plus"></i> Add to cart</a>
@@ -253,19 +137,14 @@
                         <ul class="pagination">
                             <nav>
                                 <ul class="pagination">
-
                                     <li class="page-item disabled" aria-disabled="true"
                                         aria-label="&laquo; Previous">
                                         <span class="page-link" aria-hidden="true">&lsaquo;</span>
                                     </li>
-
-
                                     <li class="page-item active" aria-current="page"><span
                                             class="page-link">1</span></li>
                                     <li class="page-item"><a class="page-link"
                                                              href="https://demo.s-cart.org/shop?page=2">2</a></li>
-
-
                                     <li class="page-item">
                                         <a class="page-link" href="https://demo.s-cart.org/shop?page=2" rel="next"
                                            aria-label="Next &raquo;">&rsaquo;</a>
