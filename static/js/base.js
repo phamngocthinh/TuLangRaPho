@@ -1,27 +1,27 @@
 function addToCartAjax(id, instance = null, storeId = null) {
     $.ajax({
-        url: "https://demo.s-cart.org/add_to_cart_ajax",
+        url: "/post_friend/",
         type: "POST",
         dataType: "JSON",
         data: {
-            "id": id,
-            "instance": instance,
-            "storeId": storeId,
-            "_token": "wy4c136LVo5KnpK03FKr1pSZZddhehoiewKdJV7s"
+            "product_id": id,
+            // "instance": instance,
+            // "storeId": storeId,
+            // "_token": "wy4c136LVo5KnpK03FKr1pSZZddhehoiewKdJV7s"
         },
         async: false,
         success: function (data) {
-            // console.log(data);
-            error = parseInt(data.error);
-            if (error == 0) {
-                setTimeout(function () {
-                    if (data.instance == 'default') {
-                        $('.sc-cart').html(data.count_cart);
-                    } else {
-                        $('.sc-' + data.instance).html(data.count_cart);
-                    }
-                }, 1000);
-                alertJs('success', data.msg);
+            if (data.is_taken) {
+                // setTimeout(function () {
+                //     if (data.instance == 'default') {
+                //         $('.sc-cart').html(data.count_cart);
+                //     } else {
+                //         $('.sc-' + data.instance).html(data.count_cart);
+                //     }
+                // }, 1000);
+                alertJs('success', "Add product to cart successfully");
+                //localStorage
+                // alertJs('success', data.msg);
             } else {
                 if (data.redirect) {
                     window.location.replace(data.redirect);

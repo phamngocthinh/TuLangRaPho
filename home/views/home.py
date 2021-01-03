@@ -1,8 +1,12 @@
+from http import HTTPStatus
+
+from django.http import JsonResponse
 from django.shortcuts import render
 
 # Create your views here.
+from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView
-from home.models import CategoryTranslate, Category, ProductTranslate, ProductTypeTranslate
+from home.models import CategoryTranslate, Category, ProductTranslate, ProductTypeTranslate, Product
 
 
 class HomeView(TemplateView):
@@ -22,3 +26,21 @@ class HomeView(TemplateView):
             'special_products': products.order_by('product_id__rank')[:5]
         }
         return context
+
+@csrf_exempt
+def postFriend(request):
+    # request should be ajax and method should be POST.
+    if request.is_ajax and request.method == "POST":
+        # get data from request
+        product_id = request.POST['product_id']
+        data = {
+            'is_taken': Product.objects.filter(id=product_id).exists()
+        }
+        return JsonResponse(data)
+        # check exist product
+        # if Product.objects.filter(id=product_id).exists():
+        #     return JsonResponse("ThinhPN",status=HTTPStatus.OK)
+        # else:
+        #     return JsonResponse(status=HTTPStatus.NOT_FOUND)
+    # some error occured
+    return JsonResponse(status=HTTPStatus.INTERNAL_SERVER_ERROR)
