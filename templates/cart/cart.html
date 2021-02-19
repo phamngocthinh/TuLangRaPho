@@ -18,8 +18,14 @@
                         </tr>
                         </thead>
                         <tbody>
-{#                        {%  %}#}
-                        <tr class="row_cart form-group ">
+{#                        { 'n' : range(parseInt(localStorage.getItem('count_cart'))) %}#}
+{#                        {% for i in "x"|rjust:"100" %}#}
+{#                        {% for i in "x"|rjust:localStorage.getItem('count_cart') %}#}
+{% 3 as n %}
+                            {% with ''|center:n as range %}
+                            {% for _ in range %}
+                            {{ c }}
+                            <tr class="row_cart form-group ">
                             <td>1</td>
                             <td>LFFKKBAY</td>
                             <td>
@@ -68,6 +74,9 @@ Easy Polo Black Edition 26<br>
                                 </a>
                             </td>
                         </tr>
+                        {% endfor %}
+{% endwith %}
+
 {#                        <tr class="row_cart form-group ">#}
 {#                            <td>2</td>#}
 {#                            <td>SSBAGH</td>#}

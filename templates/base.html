@@ -26,7 +26,7 @@
 {#    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">#}
 
 </head>
-<body>
+<body onload="loadCartFromLocalStorage()">
 <div class="page">
     {% include 'header.html' %}
     {% block content %}{% endblock %}
@@ -41,5 +41,18 @@
 <script src="https://demo.s-cart.org/templates/s-cart-light/js/core.min.js"></script>
 <script src="https://demo.s-cart.org/templates/s-cart-light/js/script.js"></script>
 <script src="https://demo.s-cart.org/js/sweetalert2.all.min.js"></script>
+<script>
+    function loadCartFromLocalStorage(){
+        {#$('.sc-cart').html(localStorage.getItem('count_cart'));#}
+        if (localStorage.hasOwnProperty('count_cart') == false) {
+            localStorage.setItem('count_cart', '0');
+            $('.sc-cart').html('0');
+        }
+        else{
+            $('.sc-cart').html(localStorage.getItem('count_cart'));
+        }
+}
+
+</script>
 </body>
 </html>

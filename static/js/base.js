@@ -1,4 +1,23 @@
-function addToCartAjax(id, instance = null, storeId = null) {
+// // var count_cart = 0;
+// var count_cart = parseInt(localStorage.getItem('count_cart'));
+//                 localStorage.setItem('count_cart', count_cart.toString());
+//                 $('.sc-cart').html(count_cart);
+// // sessionStorage.setItem('cart', count_cart.toString());
+// if (localStorage.getItem("count_cart") == null) {
+//     localStorage.setItem('count_cart', '0');
+//
+// }
+// else{
+//     count_cart = parseInt(localStorage.getItem('count_cart')) + 1;
+//     console.log(count_cart);
+//     $('.sc-cart').html(count_cart);
+// }
+// // function myFunction(){
+// //    console.log("THinhhhhhhhhhhhh");
+// // }
+
+function addToCartAjax(id) {
+    // alert("document ready occurred!");
     $.ajax({
         url: "/post_friend/",
         type: "POST",
@@ -20,8 +39,14 @@ function addToCartAjax(id, instance = null, storeId = null) {
                 //     }
                 // }, 1000);
                 alertJs('success', "Add product to cart successfully");
-                //localStorage
+                // alertJs('success', "aa");
+                // var count_cart = 10;
+                var count_cart = parseInt(localStorage.getItem('count_cart')) + 1;
+                localStorage.setItem('count_cart', count_cart.toString());
+                $('.sc-cart').html(count_cart);
                 // alertJs('success', data.msg);
+                // add object to localStorage
+
             } else {
                 if (data.redirect) {
                     window.location.replace(data.redirect);
