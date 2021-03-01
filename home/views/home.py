@@ -1,16 +1,11 @@
 from http import HTTPStatus
-from django.core.serializers.json import DjangoJSONEncoder
-
-from django.forms import model_to_dict
-from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render
 
 # Create your views here.
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView
-from requests import Response
-from rest_framework import serializers
-from rest_framework.utils import json
+from django.http import JsonResponse
+from django.core import serializers
 
 from home.models import CategoryTranslate, Category, ProductTranslate, ProductTypeTranslate, Product
 from home.serializers import ProductSerializer
@@ -44,21 +39,7 @@ def postFriend(request):
             'is_taken': Product.objects.filter(id=product_id)
             # 'is_taken': Product.objects.filter(id=product_id).exists()
         }
-
-        # response = HttpResponse(data)
-        # response.content
-        # return HttpResponse(data)
         courses = Product.objects.filter(id=product_id).first()
-        serializer = ProductSerializer(data=courses)
-        if serializer.is_valid(True):
-            return Response(serializer.data, status=200)
-        print(serializer.errors)
-
-        # return response
-        # check exist product
-        # if Product.objects.filter(id=product_id).exists():
-        #     return JsonResponse("ThinhPN",status=HTTPStatus.OK)
-        # else:
-        #     return JsonResponse(status=HTTPStatus.NOT_FOUND)
-    # some error occured
+        ser_comment = serializers.serialize("json", [courses, ])
+        return JsonResponse({"new_comment": ser_comment}, status=200)
     return JsonResponse(status=HTTPStatus.INTERNAL_SERVER_ERROR)

@@ -1,23 +1,4 @@
-// // var count_cart = 0;
-// var count_cart = parseInt(localStorage.getItem('count_cart'));
-//                 localStorage.setItem('count_cart', count_cart.toString());
-//                 $('.sc-cart').html(count_cart);
-// // sessionStorage.setItem('cart', count_cart.toString());
-// if (localStorage.getItem("count_cart") == null) {
-//     localStorage.setItem('count_cart', '0');
-//
-// }
-// else{
-//     count_cart = parseInt(localStorage.getItem('count_cart')) + 1;
-//     console.log(count_cart);
-//     $('.sc-cart').html(count_cart);
-// }
-// // function myFunction(){
-// //    console.log("THinhhhhhhhhhhhh");
-// // }
-
 function addToCartAjax(id) {
-    // alert("document ready occurred!");
     $.ajax({
         url: "/post_friend/",
         type: "POST",
@@ -29,34 +10,21 @@ function addToCartAjax(id) {
             // "_token": "wy4c136LVo5KnpK03FKr1pSZZddhehoiewKdJV7s"
         },
         async: false,
-        success: function (data) {
-            if (data.is_taken) {
-                // setTimeout(function () {
-                //     if (data.instance == 'default') {
-                //         $('.sc-cart').html(data.count_cart);
-                //     } else {
-                //         $('.sc-' + data.instance).html(data.count_cart);
-                //     }
-                // }, 1000);
-                alertJs('success', "Add product to cart successfully");
-                // alertJs('success', "aa");
-                // var count_cart = 10;
-                var count_cart = parseInt(localStorage.getItem('count_cart')) + 1;
-                localStorage.setItem('count_cart', count_cart.toString());
-                $('.sc-cart').html(count_cart);
-                // alertJs('success', data.msg);
-                // add object to localStorage
+        success: function (response) {
+            alertJs('success', "Add product to cart successfully");
+            var count_cart = parseInt(localStorage.getItem('count_cart')) + 1;
+            localStorage.setItem('count_cart', count_cart.toString());
+            $('.sc-cart').html(count_cart);
+            // add object to localStorage
+            var list_cart = JSON.parse(localStorage.getItem('list_cart'));
+            let instance = JSON.parse(response["new_comment"]);
+            let fields = instance[0]["fields"];
+            list_cart.push(fields);
+            localStorage.setItem('list_cart', JSON.stringify(list_cart));
+        },
 
-            } else {
-                if (data.redirect) {
-                    window.location.replace(data.redirect);
-                    return;
-                }
-                alertJs('error', data.msg);
-            }
-
-        }
     });
+    console.log("zzzzzzz");
 }
 
 function alertJs(type = 'error', msg = '') {
