@@ -10,6 +10,7 @@ class Product(BaseModel):
     image_path = models.CharField(db_column='image_path', max_length=150, blank=True, null=False)
     rank = models.IntegerField(db_column='rank', blank=True, null=True)
     price = models.DecimalField(max_digits=15, decimal_places=0, blank=True, null=True)
+    amount = models.IntegerField(db_column='amount', blank=False, null=False)
     # price = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True)
 
     class Meta:
