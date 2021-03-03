@@ -1,5 +1,23 @@
 {% load static %}
 {% load humanize %}
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+    $(document).ready(function() {
+        {#$("tableListCart").dataTable();#}
+        console.log("ready!");
+        let trHTML = '';
+        {#document.getElementById('tableListCart').innerHTML = '';#}
+        let data1 = JSON.parse(localStorage.getItem('list_cart'));
+        {#$.each(data, function (i, item) {#}
+        {#    console.log(item);#}
+        {#    trHTML += '<tr><td>' + item.price + '</td><td>' + item.image_path + '</td></tr>';#}
+        {#    console.log("ready!5");#}
+        {#    $('#tableListCart').append(trHTML);#}
+        {#    console.log("zzzThinh!");#}
+        {#});#}
+    });
+
+</script>
 <section onload="loadDataTablelistCart" class="section section-xl bg-default text-md-left">
     <div class="container">
         <div class="row">
@@ -9,12 +27,12 @@
                         <thead>
                         <tr style="background: #eaebec">
                             <th style="width: 50px;">No.</th>
-                            <th style="width: 100px;">SKU</th>
+{#                            <th style="width: 100px;">SKU</th>#}
                             <th>Name</th>
                             <th>Price</th>
                             <th>Quantity</th>
                             <th>Total</th>
-                            <th></th>
+{#                            <th></th>#}
                         </tr>
                         </thead>
                         <tbody>
@@ -25,154 +43,58 @@
 {#                            {% with ''|center:3 as range %}#}
 {#                            {% for _ in range %}#}
 {#                            {{ c }}#}
-{#                            <tr class="row_cart form-group ">#}
-{#                            <td>1</td>#}
-{#                            <td>LFFKKBAY</td>#}
-{#                            <td>#}
-{#                                <a href="https://demo.s-cart.org/product/demo-alias-name-product-26/s3.html"#}
-{#                                   class="row_cart-name">#}
-{#                                    <img width="100" src="https://demo.s-cart.org/data/product/product-11.png"#}
-{#                                         alt="Easy Polo Black Edition 26">#}
-{#                                    <span>#}
-{#Easy Polo Black Edition 26<br>#}
-{#</span></a>#}
-{#                                <div class="store-url"><a#}
-{#                                        href="https://demo.s-cart.org/product/demo-alias-name-product-26/s3.html"#}
-{#                                        class="row_cart-name"></a><a href="https://demo.s-cart.org/store/store-3"><i#}
-{#                                        class="fa fa-shopping-bag" aria-hidden="true"></i> Store 3</a>#}
-{#                                </div>#}
-{##}
-{##}
-{#                            </td>#}
-{#                            <td>#}
-{#                                <div class="product-price-wrap">#}
-{#                                    <div class="product-price product-price-old">$15,000</div>#}
-{#                                    <div class="product-price">$4,000</div>#}
-{#                                </div>#}
-{#                            </td>#}
-{#                            <td class="cart-col-qty">#}
-{#                                <div class="cart-qty">#}
-{#                                    <div class="stepper "><input style="width: 150px; margin: 0 auto" type="number"#}
-{#                                                                 data-id="26"#}
-{#                                                                 data-rowid="addc525ce43f5cbb4517bfa51c9c08e5"#}
-{#                                                                 data-store_id="3" onchange="updateCart($(this));"#}
-{#                                                                 class="item-qty form-control stepper-input"#}
-{#                                                                 name="qty-26" value="1"><span#}
-{#                                            class="stepper-arrow up"></span><span class="stepper-arrow down"></span>#}
-{#                                    </div>#}
-{#                                </div>#}
-{#                                <span class="text-danger item-qty-26" style="display: none;"></span>#}
-{#                            </td>#}
-{#                            <td align="right">#}
-{#                                $4,000#}
-{#                            </td>#}
-{#                            <td align="center">#}
-{#                                <a onclick="return confirm('Confirm?')" title="Remove Item" alt="Remove Item"#}
-{#                                   class="cart_quantity_delete"#}
-{#                                   href="https://demo.s-cart.org/cart_remove/addc525ce43f5cbb4517bfa51c9c08e5">#}
-{#                                    <i class="fa fa-times" aria-hidden="true"></i>#}
-{#                                </a>#}
-{#                            </td>#}
-{#                        </tr>#}
-{#                        {% endfor %}#}
-{#{% endwith %}#}
+                            {% for item in data1 %}
+                            <tr class="row_cart form-group ">
+                            <td>{{ item.price }}</td>
+                            <td>LFFKKBAY</td>
+                            <td>
+                                <a href="https://demo.s-cart.org/product/demo-alias-name-product-26/s3.html"
+                                   class="row_cart-name">
+                                    <img width="100" src="https://demo.s-cart.org/data/product/product-11.png"
+                                         alt="Easy Polo Black Edition 26">
+                                    <span>
+Easy Polo Black Edition 26<br>
+</span></a>
+                                <div class="store-url"><a
+                                        href="https://demo.s-cart.org/product/demo-alias-name-product-26/s3.html"
+                                        class="row_cart-name"></a><a href="https://demo.s-cart.org/store/store-3"><i
+                                        class="fa fa-shopping-bag" aria-hidden="true"></i> Store 3</a>
+                                </div>
 
-{#                        <tr class="row_cart form-group ">#}
-{#                            <td>2</td>#}
-{#                            <td>SSBAGH</td>#}
-{#                            <td>#}
-{#                                <a href="https://demo.s-cart.org/product/demo-alias-name-product-25/s1.html"#}
-{#                                   class="row_cart-name">#}
-{#                                    <img width="100" src="https://demo.s-cart.org/data/product/product-2.png"#}
-{#                                         alt="Easy Polo Black Edition 25">#}
-{#                                    <span>#}
-{#Easy Polo Black Edition 25<br>#}
-{#</span></a>#}
-{#                                <div class="store-url"><a#}
-{#                                        href="https://demo.s-cart.org/product/demo-alias-name-product-25/s1.html"#}
-{#                                        class="row_cart-name"></a><a href="https://demo.s-cart.org/store/root"><i#}
-{#                                        class="fa fa-shopping-bag" aria-hidden="true"></i> Store 1</a>#}
-{#                                </div>#}
-{##}
-{##}
-{#                            </td>#}
-{#                            <td>#}
-{#                                <div class="product-price-wrap">#}
-{#                                    <div class="product-price">$15,000</div>#}
-{#                                </div>#}
-{#                            </td>#}
-{#                            <td class="cart-col-qty">#}
-{#                                <div class="cart-qty">#}
-{#                                    <div class="stepper "><input style="width: 150px; margin: 0 auto" type="number"#}
-{#                                                                 data-id="25"#}
-{#                                                                 data-rowid="0d881817bb81e6017d2df92d0313f607"#}
-{#                                                                 data-store_id="1" onchange="updateCart($(this));"#}
-{#                                                                 class="item-qty form-control stepper-input"#}
-{#                                                                 name="qty-25" value="1"><span#}
-{#                                            class="stepper-arrow up"></span><span class="stepper-arrow down"></span>#}
-{#                                    </div>#}
-{#                                </div>#}
-{#                                <span class="text-danger item-qty-25" style="display: none;"></span>#}
-{#                            </td>#}
-{#                            <td align="right">#}
-{#                                $15,000#}
-{#                            </td>#}
-{#                            <td align="center">#}
-{#                                <a onclick="return confirm('Confirm?')" title="Remove Item" alt="Remove Item"#}
-{#                                   class="cart_quantity_delete"#}
-{#                                   href="https://demo.s-cart.org/cart_remove/0d881817bb81e6017d2df92d0313f607">#}
-{#                                    <i class="fa fa-times" aria-hidden="true"></i>#}
-{#                                </a>#}
-{#                            </td>#}
-{#                        </tr>#}
-{#                        <tr class="row_cart form-group ">#}
-{#                            <td>3</td>#}
-{#                            <td>ALGKFAN</td>#}
-{#                            <td>#}
-{#                                <a href="https://demo.s-cart.org/product/demo-alias-name-product-23/s3.html"#}
-{#                                   class="row_cart-name">#}
-{#                                    <img width="100" src="https://demo.s-cart.org/data/product/product-7.png"#}
-{#                                         alt="Easy Polo Black Edition 23">#}
-{#                                    <span>#}
-{#Easy Polo Black Edition 23<br>#}
-{#</span></a>#}
-{#                                <div class="store-url"><a#}
-{#                                        href="https://demo.s-cart.org/product/demo-alias-name-product-23/s3.html"#}
-{#                                        class="row_cart-name"></a><a href="https://demo.s-cart.org/store/store-3"><i#}
-{#                                        class="fa fa-shopping-bag" aria-hidden="true"></i> Store 3</a>#}
-{#                                </div>#}
-{##}
-{##}
-{#                            </td>#}
-{#                            <td>#}
-{#                                <div class="product-price-wrap">#}
-{#                                    <div class="product-price">$20,000</div>#}
-{#                                </div>#}
-{#                            </td>#}
-{#                            <td class="cart-col-qty">#}
-{#                                <div class="cart-qty">#}
-{#                                    <div class="stepper "><input style="width: 150px; margin: 0 auto" type="number"#}
-{#                                                                 data-id="23"#}
-{#                                                                 data-rowid="ba02b0dddb000b25445168300c65386d"#}
-{#                                                                 data-store_id="3" onchange="updateCart($(this));"#}
-{#                                                                 class="item-qty form-control stepper-input"#}
-{#                                                                 name="qty-23" value="2"><span#}
-{#                                            class="stepper-arrow up"></span><span class="stepper-arrow down"></span>#}
-{#                                    </div>#}
-{#                                </div>#}
-{#                                <span class="text-danger item-qty-23" style="display: none;"></span>#}
-{#                            </td>#}
-{#                            <td align="right">#}
-{#                                $40,000#}
-{#                            </td>#}
-{#                            <td align="center">#}
-{#                                <a onclick="return confirm('Confirm?')" title="Remove Item" alt="Remove Item"#}
-{#                                   class="cart_quantity_delete"#}
-{#                                   href="https://demo.s-cart.org/cart_remove/ba02b0dddb000b25445168300c65386d">#}
-{#                                    <i class="fa fa-times" aria-hidden="true"></i>#}
-{#                                </a>#}
-{#                            </td>#}
-{#                        </tr>#}
+
+                            </td>
+                            <td>
+                                <div class="product-price-wrap">
+                                    <div class="product-price product-price-old">$15,000</div>
+                                    <div class="product-price">$4,000</div>
+                                </div>
+                            </td>
+                            <td class="cart-col-qty">
+                                <div class="cart-qty">
+                                    <div class="stepper "><input style="width: 150px; margin: 0 auto" type="number"
+                                                                 data-id="26"
+                                                                 data-rowid="addc525ce43f5cbb4517bfa51c9c08e5"
+                                                                 data-store_id="3" onchange="updateCart($(this));"
+                                                                 class="item-qty form-control stepper-input"
+                                                                 name="qty-26" value="1"><span
+                                            class="stepper-arrow up"></span><span class="stepper-arrow down"></span>
+                                    </div>
+                                </div>
+                                <span class="text-danger item-qty-26" style="display: none;"></span>
+                            </td>
+                            <td align="right">
+                                $4,000
+                            </td>
+                            <td align="center">
+                                <a onclick="return confirm('Confirm?')" title="Remove Item" alt="Remove Item"
+                                   class="cart_quantity_delete"
+                                   href="https://demo.s-cart.org/cart_remove/addc525ce43f5cbb4517bfa51c9c08e5">
+                                    <i class="fa fa-times" aria-hidden="true"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+{#{% endwith %}#}
                         </tbody>
                     </table>
                 </div>
@@ -691,18 +613,26 @@
         </div>
     </div>
 </section>
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-{#<script src="https://project.s3.amazonaws.com/static/js/chat.js"></script>#}
-<script>
 
-    {#$('#tableListCart').addEventListener("load", loadDataTablelistCart);#}
-    function loadDataTablelistCart() {
-        var trHTML = '';
-        document.getElementById('tableListCart').innerHTML = '';
-        var data = JSON.parse(localStorage.getItem('list_cart'));
-        $.each(data, function (i, item) {
-        trHTML += '<tr><td>' + item[0] + '</td><td>' + item[1] + '</td></tr>';
-        $('#tableListCart').append(trHTML);
-    })
-    }
-</script>
+{#<script src="https://project.s3.amazonaws.com/static/js/chat.js"></script>#}
+{#<script>#}
+{#    $(document).ready(function() {#}
+{#        console.log("ready!");#}
+{#        let trHTML = '';#}
+{#        console.log("ready1!");#}
+{#        document.getElementById('tableListCart').innerHTML = '';#}
+{#        console.log("ready!2");#}
+{#        let data = JSON.parse(localStorage.getItem('list_cart'));#}
+{#        console.log("ready!3");#}
+{#        $.each(data, function (i, item) {#}
+{#            console.log("ready!4");#}
+{#            trHTML += '<tr><td>' + item[0] + '</td><td>' + item[1] + '</td></tr>';#}
+{#            console.log("ready!5");#}
+{#            $('#tableListCart').append(trHTML);#}
+{#            console.log("zzzThinh!");#}
+{#        });#}
+{#    });#}
+{##}
+{##}
+{##}
+{#</script>#}

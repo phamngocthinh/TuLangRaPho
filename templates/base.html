@@ -43,13 +43,16 @@
 <script src="https://demo.s-cart.org/js/sweetalert2.all.min.js"></script>
 <script>
     function loadCartFromLocalStorage(){
-        {#$('.sc-cart').html(localStorage.getItem('count_cart'));#}
         if (localStorage.hasOwnProperty('count_cart') == false) {
             localStorage.setItem('count_cart', '0');
             $('.sc-cart').html('0');
         }
         else{
             $('.sc-cart').html(localStorage.getItem('count_cart'));
+        }
+        if (localStorage.hasOwnProperty('list_cart') == false) {
+            let list_cart = [];
+            localStorage.setItem('list_cart', JSON.stringify(list_cart));
         }
 }
 
