@@ -15,5 +15,6 @@ urlpatterns = [
     path(r'product_detail/<int:id>', product_detail.ProductDetailView.as_view(), name='product_detail'),
     path(r'cart/', cart.CartView.as_view(), name='cart'),
     # ajax api
-    path(r'add_product_to_cart/', home.add_product_to_cart, name="add_product_to_cart"),
+    path(r'check_product_exist/', home.check_product_exist, name="check_product_exist"),
+    path(r'check_list_product_exist/', home.check_list_product_exist, name="check_list_product_exist"),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

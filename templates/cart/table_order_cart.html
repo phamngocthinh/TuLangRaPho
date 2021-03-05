@@ -1,0 +1,57 @@
+<table id="tableListCart" class="table box table-bordered">
+    <thead>
+    <tr style="background: #eaebec">
+        <th style="width: 50px;">No.</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Total</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+        {% for product in new_comment  %}
+            <tr class="row_cart form-group ">
+                <td>${no}</td>
+                <td>
+                    <a href="/product_detail/${item.id }" class="row_cart-name" >
+                    <img width="100" src="/static/${item.image_path}" alt="Easy Polo Black Edition 26">
+                    <span>Tên sản phẩm<br></span></a>
+                    <div class="store-url">
+                        <a href="https://demo.s-cart.org/product/demo-alias-name-product-26/s3.html"
+                                class="row_cart-name"></a>
+                    </div>
+                </td>
+                <td>
+                    <div class="product-price-wrap">
+                        <div class="product-price product-price-old">$15,000</div>
+                        <div class="product-price">$4,000</div>
+                    </div>
+                </td>
+                <td class="cart-col-qty">
+                    <div class="cart-qty">
+                        <div class="stepper ">
+                            <input style="width: 150px; margin: 0 auto" type="number"
+                                 data-id="26"
+                                 data-rowid="addc525ce43f5cbb4517bfa51c9c08e5"
+                                 data-store_id="3" onchange="updateCart($(this));"
+                                 class="item-qty form-control stepper-input"
+                                 name="qty-26" value="1">
+                            <span class="stepper-arrow up"></span>
+                            <span class="stepper-arrow down"></span>
+                        </div>
+                    </div>
+                    <span class="text-danger item-qty-26" style="display: none;"></span>
+                </td>
+                <td>${item.price}</td>
+                <td align="center">
+                    <a onclick="return confirm('Confirm?')" title="Remove Item" alt="Remove Item"
+                               class="cart_quantity_delete"
+                               href="https://demo.s-cart.org/cart_remove/addc525ce43f5cbb4517bfa51c9c08e5">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

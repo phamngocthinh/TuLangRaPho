@@ -1,3 +1,4 @@
+import json
 from http import HTTPStatus
 from django.shortcuts import render
 
@@ -6,7 +7,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView
 from django.http import JsonResponse
 from django.core import serializers
-
+from django.template import loader
 from home.models import CategoryTranslate, Category, ProductTranslate, ProductTypeTranslate, Product
 from home.serializers import ProductSerializer
 
@@ -30,7 +31,7 @@ class HomeView(TemplateView):
         return context
 
 @csrf_exempt
-def postFriend(request):
+def check_product_exist(request):
     # request should be ajax and method should be POST.
     if request.is_ajax and request.method == "POST":
         # get data from request
@@ -39,7 +40,30 @@ def postFriend(request):
             'is_taken': Product.objects.filter(id=product_id)
             # 'is_taken': Product.objects.filter(id=product_id).exists()
         }
-        courses = Product.objects.filter(id=product_id).first()
+        courses = Product.objects.filter(id=product_id)[0]
         ser_comment = serializers.serialize("json", [courses, ])
-        return JsonResponse({"new_comment": ser_comment}, status=200)
+        return JsonResponse({"new_comment": ser_comment}, status=HTTPStatus.OK)
+    return JsonResponse(status=HTTPStatus.INTERNAL_SERVER_ERROR)
+
+@csrf_exempt
+def check_list_product_exist(request):
+    # request should be ajax and method should be POST.
+    if request.is_ajax and request.method == "POST":
+        # get data from request
+        list_cart = json.loads(request.POST['data'])
+        # data = {
+        #     'is_taken': Product.objects.filter(id=product_id)
+        #     # 'is_taken': Product.objects.filter(id=product_id).exists()
+        # }
+        list_product = []
+        for item in list_cart:
+            # product_id = item.rank
+            if Product.objects.filter(id=item["rank"]).exists():
+                list_product.append(Product.objects.filter(id=item["rank"])[0])
+
+        ser_comment = serializers.serialize("json", list_product)
+        # return JsonResponse({"new_comment": ser_comment}, status=HTTPStatus.OK)
+        table_cart_html = loader.render_to_string('cart/table_order_cart.html', {"new_comment": ser_comment})
+        return table_cart_html
+        # return JsonResponse({"new_comment": ser_comment}, status=HTTPStatus.OK)
     return JsonResponse(status=HTTPStatus.INTERNAL_SERVER_ERROR)
