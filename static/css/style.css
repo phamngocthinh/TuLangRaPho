@@ -10347,6 +10347,7 @@ html:not(.lt-ie10) .not-animated {
 .fadeInRight {
 	-webkit-animation-name: fadeInRight;
 	animation-name: fadeInRight;
+	height: 100%;
 }
 
 @-webkit-keyframes fadeOut {

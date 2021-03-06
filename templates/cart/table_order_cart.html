@@ -1,3 +1,6 @@
+{% load humanize %}
+{% load static %}
+{% load mathfilters %}
 <table id="tableListCart" class="table box table-bordered">
     <thead>
     <tr style="background: #eaebec">
@@ -12,10 +15,10 @@
     <tbody>
         {% for product in new_comment  %}
             <tr class="row_cart form-group ">
-                <td>${no}</td>
+                <td>{{ forloop.counter }}</td>
                 <td>
-                    <a href="/product_detail/${item.id }" class="row_cart-name" >
-                    <img width="100" src="/static/${item.image_path}" alt="Easy Polo Black Edition 26">
+                    <a href="/product_detail/${product.id }" class="row_cart-name" >
+                    <img width="100" src="{% static product.image_path %}" alt="Easy Polo Black Edition 26">
                     <span>Tên sản phẩm<br></span></a>
                     <div class="store-url">
                         <a href="https://demo.s-cart.org/product/demo-alias-name-product-26/s3.html"
@@ -24,8 +27,10 @@
                 </td>
                 <td>
                     <div class="product-price-wrap">
-                        <div class="product-price product-price-old">$15,000</div>
-                        <div class="product-price">$4,000</div>
+{#                        {% if product.price > 200000 %}#}
+{#                            <div class="product-price product-price-old">450,000 VND</div>#}
+{#                        {% endif %}#}
+                        <div class="product-price">{{ product.price|intcomma }} VND</div>
                     </div>
                 </td>
                 <td class="cart-col-qty">
@@ -43,7 +48,15 @@
                     </div>
                     <span class="text-danger item-qty-26" style="display: none;"></span>
                 </td>
-                <td>${item.price}</td>
+                <td>
+                    <div class="product-price-wrap">
+{#                        {% if product.price > 200000 %}#}
+{#                            <div class="product-price product-price-old">450,000 VND</div>#}
+{#                        {% endif %}#}
+                        <div class="product-price">{{ product.price|mul:1|intcomma }} VND</div>
+{#                        |intcomma#}
+                    </div>
+                </td>
                 <td align="center">
                     <a onclick="return confirm('Confirm?')" title="Remove Item" alt="Remove Item"
                                class="cart_quantity_delete"

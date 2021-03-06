@@ -11,16 +11,26 @@ function addToCartAjax(id) {
         },
         async: false,
         success: function (response) {
-            alertJs('success', "Add product to cart successfully");
-            var count_cart = parseInt(localStorage.getItem('count_cart')) + 1;
-            localStorage.setItem('count_cart', count_cart.toString());
-            $('.sc-cart').html(count_cart);
-            // add object to localStorage
-            var list_cart = JSON.parse(localStorage.getItem('list_cart'));
-            let instance = JSON.parse(response["new_comment"]);
-            let fields = instance[0]["fields"];
-            list_cart.push(fields);
-            localStorage.setItem('list_cart', JSON.stringify(list_cart));
+            if(response["valid"]) {
+                let isExist = false;
+                alertJs('success', "Add product to cart successfully");
+                let count_cart = parseInt(localStorage.getItem('count_cart')) + 1;
+                localStorage.setItem('count_cart', count_cart.toString());
+                $('.sc-cart').html(count_cart);
+                // add object to localStorage
+                var list_cart = JSON.parse(localStorage.getItem('list_cart'));
+                // let instance = JSON.parse(response["new_comment"]);
+                // let fields = instance[0]["fields"];
+                for (let i = 0; i< list_cart.length ; i++ )
+                    if (list_cart[i].id === id){
+                        isExist = true;
+                        list_cart[i].qty += 1;
+                    }
+                if (!isExist){
+                    list_cart.push({"id": id, "qty": 1});
+                }
+                localStorage.setItem('list_cart', JSON.stringify(list_cart));
+            }
         },
 
     });

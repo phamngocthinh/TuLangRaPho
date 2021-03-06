@@ -37,11 +37,15 @@ def check_product_exist(request):
         # get data from request
         product_id = request.POST['product_id']
         data = {
-            'is_taken': Product.objects.filter(id=product_id)
+            'is_taken': Product.objects.filter(id=product_id, quantity__gt=0).exists()
             # 'is_taken': Product.objects.filter(id=product_id).exists()
         }
-        courses = Product.objects.filter(id=product_id)[0]
-        ser_comment = serializers.serialize("json", [courses, ])
+        if data["is_taken"]:
+            return JsonResponse({"valid": True}, status=HTTPStatus.OK)
+        else:
+            return JsonResponse({"valid": False}, status=HTTPStatus.OK)
+        # courses = Product.objects.filter(id=product_id)[0]
+        # ser_comment = serializers.serialize("json", [courses, ])
         return JsonResponse({"new_comment": ser_comment}, status=HTTPStatus.OK)
     return JsonResponse(status=HTTPStatus.INTERNAL_SERVER_ERROR)
 
@@ -57,13 +61,13 @@ def check_list_product_exist(request):
         # }
         list_product = []
         for item in list_cart:
-            # product_id = item.rank
-            if Product.objects.filter(id=item["rank"]).exists():
-                list_product.append(Product.objects.filter(id=item["rank"])[0])
+            if Product.objects.filter(id=item["id"]).exists():
+                list_product.append(Product.objects.filter(id=item["id"])[0])
+                # ProductTranslate.objects.all().filter(lang_code='vn').select_related('product_id')
 
-        ser_comment = serializers.serialize("json", list_product)
+        # ser_comment = serializers.serialize("json", list_product)
         # return JsonResponse({"new_comment": ser_comment}, status=HTTPStatus.OK)
-        table_cart_html = loader.render_to_string('cart/table_order_cart.html', {"new_comment": ser_comment})
-        return table_cart_html
+        table_cart_html = loader.render_to_string('cart/table_order_cart.html', {"new_comment": list_product})
+        return JsonResponse({"table_cart_html": table_cart_html})
         # return JsonResponse({"new_comment": ser_comment}, status=HTTPStatus.OK)
     return JsonResponse(status=HTTPStatus.INTERNAL_SERVER_ERROR)
