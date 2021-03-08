@@ -565,26 +565,65 @@
         </div>
     </div>
 </section>
+ <div id="dialog-confirm" title="Confirmation" style='display: none'>
+    <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>
+        Are you sure?</p>
+</div>
+<script src="https://project.s3.amazonaws.com/static/js/chat.js"></script>
+<script>
+    {#$(document).ready(function() {#}
+    {#    console.log("ready!");#}
+    {#    let trHTML = '';#}
+    {#    console.log("ready1!");#}
+    {#    document.getElementById('tableListCart').innerHTML = '';#}
+    {#    console.log("ready!2");#}
+    {#    let data = JSON.parse(localStorage.getItem('list_cart'));#}
+    {#    console.log("ready!3");#}
+    {#    $.each(data, function (i, item) {#}
+    {#        console.log("ready!4");#}
+    {#        trHTML += '<tr><td>' + item[0] + '</td><td>' + item[1] + '</td></tr>';#}
+    {#        console.log("ready!5");#}
+    {#        $('#tableListCart').append(trHTML);#}
+    {#        console.log("zzzThinh!");#}
+    {#    });#}
+    {#});#}
 
-{#<script src="https://project.s3.amazonaws.com/static/js/chat.js"></script>#}
-{#<script>#}
-{#    $(document).ready(function() {#}
-{#        console.log("ready!");#}
-{#        let trHTML = '';#}
-{#        console.log("ready1!");#}
-{#        document.getElementById('tableListCart').innerHTML = '';#}
-{#        console.log("ready!2");#}
-{#        let data = JSON.parse(localStorage.getItem('list_cart'));#}
-{#        console.log("ready!3");#}
-{#        $.each(data, function (i, item) {#}
-{#            console.log("ready!4");#}
-{#            trHTML += '<tr><td>' + item[0] + '</td><td>' + item[1] + '</td></tr>';#}
-{#            console.log("ready!5");#}
-{#            $('#tableListCart').append(trHTML);#}
-{#            console.log("zzzThinh!");#}
-{#        });#}
-{#    });#}
-{##}
-{##}
-{##}
-{#</script>#}
+
+
+    function removeProduct(id) {
+        $.ajax({
+            url: "/check_product_exist/",
+            type: "POST",
+            dataType: "JSON",
+            data: {
+                "product_id": id,
+            },
+            async: false,
+            success: function (response) {
+                if(response["valid"]) {
+                    let isExist = false;
+                    alertJs('success', "Add product to cart successfully");
+                    let count_cart = parseInt(localStorage.getItem('count_cart')) + 1;
+                    localStorage.setItem('count_cart', count_cart.toString());
+                    $('.sc-cart').html(count_cart);
+                    // add object to localStorage
+                    var list_cart = JSON.parse(localStorage.getItem('list_cart'));
+                    for (let i = 0; i< list_cart.length ; i++ )
+                        if (list_cart[i].id === id){
+                            isExist = true;
+                            list_cart[i].qty += 1;
+                        }
+                    if (!isExist){
+                        list_cart.push({"id": id, "qty": 1});
+                    }
+                    localStorage.setItem('list_cart', JSON.stringify(list_cart));
+                }
+            },
+
+        });
+        console.log("remove");
+    }
+
+
+
+</script>
