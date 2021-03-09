@@ -126,3 +126,12 @@ STATIC_ROOT = os.environ.get('STATIC_ROOT', '/var/www/static/')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
+
+# Settings Send mail
+EMAIL_HOST = os.environ.get('EMAIL_HOST', 'smtp.gmail.com')
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', 'testtulangrapho@gmail.com')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '@BC123456')
+EMAIL_PORT = os.environ.get('EMAIL_PORT', 465)
+EMAIL_USE_SSL = os.environ.get('EMAIL_USE_SSL', True)
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_TIMEOUT = int(os.environ.get('EMAIL_TIMEOUT', 90))
