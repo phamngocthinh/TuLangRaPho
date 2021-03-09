@@ -34,7 +34,6 @@ function addToCartAjax(id) {
         },
 
     });
-    console.log("zzzzzzz");
 }
 
 function alertJs(type = 'error', msg = '') {

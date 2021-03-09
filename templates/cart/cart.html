@@ -4,47 +4,27 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script>
     $(document).ready(function() {
-        console.log("ready!");
-        {#let data = JSON.parse(localStorage.getItem('list_cart'));#}
         let data = localStorage.getItem('list_cart');
         getListCart(data);
-
     });
 
     function getListCart(listCart) {
-        console.log("start ajax");
-
-    $.ajax({
-        url: "/check_list_product_exist/",
-        type: "POST",
-        dataType: "JSON",
-        data: {
-            "data": listCart,
-            // "instance": instance,
-            // "storeId": storeId,
-            // "_token": "wy4c136LVo5KnpK03FKr1pSZZddhehoiewKdJV7s"
-        },
-        async: false,
-        success: function (data, status, xhr) {
-            {#alertJs('success', "Add product to cart successfully");#}
-            {#var count_cart = parseInt(localStorage.getItem('count_cart')) + 1;#}
-            {#localStorage.setItem('count_cart', count_cart.toString());#}
-            {#$('.sc-cart').html(count_cart);#}
-            {#// add object to localStorage#}
-            {#var list_cart = JSON.parse(localStorage.getItem('list_cart'));#}
-            {#let instance = JSON.parse(response["new_comment"]);#}
-            {#let fields = instance[0]["fields"];#}
-            {#list_cart.push(fields);#}
-            {#localStorage.setItem('list_cart', JSON.stringify(list_cart));#}
-            $("#tableListCart").html(data.table_cart_html);
-        },
-
-    });
-    console.log("zzzzzzz2");
+        $.ajax({
+            url: "/check_list_product_exist/",
+            type: "POST",
+            dataType: "JSON",
+            data: {
+                "data": listCart,
+            },
+            async: false,
+            success: function (data, status, xhr) {
+                $("#tableListCart").html(data.table_cart_html);
+            },
+        });
     }
 
 </script>
-<section onload="loadDataTablelistCart" class="section section-xl bg-default text-md-left">
+<section class="section section-xl bg-default text-md-left">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -54,7 +34,8 @@
             <div class="col-md-12">
                 <div class="pull-left">
                     <button class="btn btn-default btn-back" type="button"
-                            onclick="location.href='https://demo.s-cart.org'"><i class="fa fa-arrow-left"></i>
+                            onclick="location.href='{% url 'home' %}'">
+                        <i class="fa fa-arrow-left"></i>
                         Back to Shop
                     </button>
                 </div>

@@ -13,24 +13,18 @@
     </tr>
     </thead>
     <tbody>
-        {% for product in new_comment  %}
+        {% for product in list_cart  %}
             <tr class="row_cart form-group ">
                 <td>{{ forloop.counter }}</td>
                 <td>
-                    <a href="/product_detail/${product.id }" class="row_cart-name" >
-                    <img width="100" src="{% static product.image_path %}" alt="Easy Polo Black Edition 26">
-                    <span>Tên sản phẩm<br></span></a>
-                    <div class="store-url">
-                        <a href="https://demo.s-cart.org/product/demo-alias-name-product-26/s3.html"
-                                class="row_cart-name"></a>
-                    </div>
+                    <a href="{% url 'product_detail' id=product.product_id.id %}" class="row_cart-name" >
+                    <img width="100" src="{% static product.product_id.image_path %}"
+                         alt={{ product.product_name }} >
+                    <span>{{ product.product_name }}<br></span></a>
                 </td>
                 <td>
                     <div class="product-price-wrap">
-{#                        {% if product.price > 200000 %}#}
-{#                            <div class="product-price product-price-old">450,000 VND</div>#}
-{#                        {% endif %}#}
-                        <div class="product-price">{{ product.price|intcomma }} VND</div>
+                        <div class="product-price">{{ product.product_id.price|intcomma }} VND</div>
                     </div>
                 </td>
                 <td class="cart-col-qty">
@@ -41,7 +35,7 @@
                                  data-rowid="addc525ce43f5cbb4517bfa51c9c08e5"
                                  data-store_id="3" onchange="updateCart($(this));"
                                  class="item-qty form-control stepper-input"
-                                 name="qty-26" value="1">
+                                 name="qty-26" value="{{ product.qty }}">
                             <span class="stepper-arrow up"></span>
                             <span class="stepper-arrow down"></span>
                         </div>
@@ -50,10 +44,7 @@
                 </td>
                 <td>
                     <div class="product-price-wrap">
-{#                        {% if product.price > 200000 %}#}
-{#                            <div class="product-price product-price-old">450,000 VND</div>#}
-{#                        {% endif %}#}
-                        <div class="product-price">{{ product.price|mul:1|intcomma }} VND</div>
+                        <div class="product-price">{{ product.total_price|intcomma }} VND</div>
 {#                        |intcomma#}
                     </div>
                 </td>

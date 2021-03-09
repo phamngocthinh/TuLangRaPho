@@ -55,19 +55,14 @@ def check_list_product_exist(request):
     if request.is_ajax and request.method == "POST":
         # get data from request
         list_cart = json.loads(request.POST['data'])
-        # data = {
-        #     'is_taken': Product.objects.filter(id=product_id)
-        #     # 'is_taken': Product.objects.filter(id=product_id).exists()
-        # }
         list_product = []
         for item in list_cart:
-            if Product.objects.filter(id=item["id"]).exists():
-                list_product.append(Product.objects.filter(id=item["id"])[0])
-                # ProductTranslate.objects.all().filter(lang_code='vn').select_related('product_id')
-
-        # ser_comment = serializers.serialize("json", list_product)
-        # return JsonResponse({"new_comment": ser_comment}, status=HTTPStatus.OK)
-        table_cart_html = loader.render_to_string('cart/table_order_cart.html', {"new_comment": list_product})
+            product_id = item["id"]
+            product = ProductTranslate.objects.all().filter(product_id=product_id, lang_code='vn').select_related('product_id').first()
+            if len(list_product) >= 0:
+                product.qty = item["qty"]
+                product.total_price = product.product_id.price * product.qty
+                list_product.append(product)
+        table_cart_html = loader.render_to_string('cart/table_order_cart.html', {"list_cart": list_product})
         return JsonResponse({"table_cart_html": table_cart_html})
-        # return JsonResponse({"new_comment": ser_comment}, status=HTTPStatus.OK)
     return JsonResponse(status=HTTPStatus.INTERNAL_SERVER_ERROR)
