@@ -1,36 +1,38 @@
-function addToCartAjax(id, instance = null, storeId = null) {
+function addToCartAjax(id) {
     $.ajax({
-        url: "https://demo.s-cart.org/add_to_cart_ajax",
+        url: "/check_product_exist/",
         type: "POST",
         dataType: "JSON",
         data: {
-            "id": id,
-            "instance": instance,
-            "storeId": storeId,
-            "_token": "wy4c136LVo5KnpK03FKr1pSZZddhehoiewKdJV7s"
+            "product_id": id,
+            // "instance": instance,
+            // "storeId": storeId,
+            // "_token": "wy4c136LVo5KnpK03FKr1pSZZddhehoiewKdJV7s"
         },
         async: false,
-        success: function (data) {
-            // console.log(data);
-            error = parseInt(data.error);
-            if (error == 0) {
-                setTimeout(function () {
-                    if (data.instance == 'default') {
-                        $('.sc-cart').html(data.count_cart);
-                    } else {
-                        $('.sc-' + data.instance).html(data.count_cart);
+        success: function (response) {
+            if(response["valid"]) {
+                let isExist = false;
+                alertJs('success', "Add product to cart successfully");
+                let count_cart = parseInt(localStorage.getItem('count_cart')) + 1;
+                localStorage.setItem('count_cart', count_cart.toString());
+                $('.sc-cart').html(count_cart);
+                // add object to localStorage
+                var list_cart = JSON.parse(localStorage.getItem('list_cart'));
+                // let instance = JSON.parse(response["new_comment"]);
+                // let fields = instance[0]["fields"];
+                for (let i = 0; i< list_cart.length ; i++ )
+                    if (list_cart[i].id === id){
+                        isExist = true;
+                        list_cart[i].qty += 1;
                     }
-                }, 1000);
-                alertJs('success', data.msg);
-            } else {
-                if (data.redirect) {
-                    window.location.replace(data.redirect);
-                    return;
+                if (!isExist){
+                    list_cart.push({"id": id, "qty": 1});
                 }
-                alertJs('error', data.msg);
+                localStorage.setItem('list_cart', JSON.stringify(list_cart));
             }
+        },
 
-        }
     });
 }
 

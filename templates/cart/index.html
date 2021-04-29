@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% include 'cart/banner.html' %}
+    {% include 'cart/cart.html' %}
+{% endblock %}
+
+<script src="https://connect.facebook.net/vi_VN/sdk.js?hash=f707b26fa9743bb089ea46cd8e48d51c&amp;ua=modern_es6" async=""
+        crossorigin="anonymous"></script>
+<script id="facebook-jssdk"
+        src="//connect.facebook.net/vi_VN/sdk.js#xfbml=1&amp;version=v2.8&amp;appId=934208239994473"></script>
+
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = '//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.8&appId=934208239994473';
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+</script>

@@ -1,0 +1,161 @@
+{% load static %}
+{% load humanize %}
+<section class="section section-xxl bg-default text-md-left">
+    <div class="container">
+        <div class="row row-50">
+            <!--main left-->
+            <div class="col-lg-4 col-xl-3">
+                <div class="aside row row-30 row-md-50 justify-content-md-between">
+                    <!--Module left -->
+                    <div class="aside-item col-sm-6 col-md-5 col-lg-12">
+                        <h6 class="aside-title">Categories</h6>
+                        <ul class="list-shop-filter">
+                          {% for category in categories %}
+                            <li class="product-minimal-title active"><a
+                                href="{% url 'category' id=category.category_id %}"> {{ category.category_name }}</a></li>
+                          {% endfor %}
+                        </ul>
+                    </div>
+                    <!--/brands_products-->
+                    <div class="aside-item col-sm-6 col-lg-12">
+                        <h6 class="aside-title">Special products</h6>
+                        <div class="row row-10 row-lg-20 gutters-10">
+                            {% for special_product in special_products %}
+                             <div class="col-4 col-sm-6 col-md-12">
+                                <!-- Product Minimal-->
+                                <article class="product-minimal">
+                                    <div class="unit unit-spacing-sm flex-column flex-md-row align-items-center">
+                                        <div class="unit-left">
+                                            <a class="post-minimal-figure"
+                                               href="https://demo.s-cart.org/product/demo-alias-name-product-11/s1.html">
+                                                <img src="{% static special_product.product_id.image_path %}"
+                                                     alt="" width="106" height="104">
+                                            </a>
+                                        </div>
+                                        <div class="unit-body">
+                                            <p class="product-minimal-title"><a
+                                                    href="https://demo.s-cart.org/product/demo-alias-name-product-11/s1.html">{{ special_product.product_name}}</a></p>
+                                            <p class="product-minimal-price">
+                                            <div class="product-price-wrap">
+                                                <div class="product-price product-price-old">$15,000</div>
+                                                <div class="product-price">$600</div>
+                                            </div>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </article>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <!--/last_view_product-->
+                    <!--//Module left -->
+                </div>
+            </div>
+            <!--//main left-->                    <!--main center-->
+            <div class="col-lg-8 col-xl-9">
+                <div class="product-top-panel group-md">
+                    <p class="product-top-panel-title">
+                        Showing <b>1</b>-<b>12</b> of <b>{{ products.count }}</b> items</b>
+                    </p>
+                    <form action="" method="GET" id="filter_sort">
+                        <select class="form-control" name="filter_sort">
+                            <option value="">Select filter sort</option>
+                            <option value="price_asc">
+                                Sort by price (asc)
+                            </option>
+                            <option value="price_desc">
+                                Sort by price (desc)
+                            </option>
+                            <option value="sort_asc">
+                                Sort by priority (asc)
+                            </option>
+                            <option value="sort_desc">
+                                Sort by priority (desc)
+                            </option>
+                            <option value="id_asc">Sort by oldest product
+                            </option>
+                            <option value="id_desc">
+                                Sort by latest product
+                            </option>
+                        </select>
+                    </form>
+                </div>
+
+                <div class="row row-30 row-lg-50">
+                    {% for product in products %}
+                    <div class="col-sm-6 col-md-4 col-lg-6 col-xl-4">
+                        <!-- Product-->
+                        <article class="product wow fadeInRight">
+                            <div class="product-body">
+                                <div class="product-figure">
+                                    <a href="{% url 'product_detail' id=product.product_id.id %}">
+                                        <img src="{% static product.product_id.image_path %}"
+                                             alt="Easy Polo Black Edition 26"/>
+                                    </a>
+                                </div>
+                                <h5 class="product-title"><a
+                                        href="{% url 'product_detail' id=product.id %}">{{ product.product_name }}</a></h5>
+                                <a onClick="addToCartAjax('26','default','3')"
+                                   class="button button-lg button-secondary button-zakaria add-to-cart-list">
+                                    <i class="fa fa-cart-plus"></i> Add to cart</a>
+
+                                <div class="product-price-wrap">
+                                    {% if product.product_id.price > 200000 %}
+                                    <div class="product-price product-price-old">450,000 VND</div>
+                                    {% endif %}
+                                    <div class="product-price">{{ product.product_id.price|intcomma }} VND</div>
+                                </div>
+                            </div>
+                            {% if product.product_id.price > 200000 %}
+                            <span><img class="product-badge new"
+                                       src="https://demo.s-cart.org/templates/s-cart-light/images/home/sale.png"
+                                       class="new" alt=""/></span>
+                            {% endif %}
+                            <div class="product-button-wrap">
+                                <div class="product-button">
+                                    <a class="button button-secondary button-zakaria"
+                                       onClick="addToCartAjax('26','wishlist','3')">
+                                        <i class="fas fa-heart"></i>
+                                    </a>
+                                </div>
+                                <div class="product-button">
+                                    <a class="button button-primary button-zakaria"
+                                       onClick="addToCartAjax('26','compare','3')">
+                                        <i class="fa fa-exchange"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <div class="pagination-wrap">
+                    <!-- Bootstrap Pagination-->
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination">
+                            <nav>
+                                <ul class="pagination">
+                                    <li class="page-item disabled" aria-disabled="true"
+                                        aria-label="&laquo; Previous">
+                                        <span class="page-link" aria-hidden="true">&lsaquo;</span>
+                                    </li>
+                                    <li class="page-item active" aria-current="page"><span
+                                            class="page-link">1</span></li>
+                                    <li class="page-item"><a class="page-link"
+                                                             href="https://demo.s-cart.org/shop?page=2">2</a></li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="https://demo.s-cart.org/shop?page=2" rel="next"
+                                           aria-label="Next &raquo;">&rsaquo;</a>
+                                    </li>
+                                </ul>
+                            </nav>
+
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

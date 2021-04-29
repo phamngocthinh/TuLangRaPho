@@ -1,0 +1,61 @@
+{% load humanize %}
+{% load static %}
+{% load mathfilters %}
+<table id="tableListCart" class="table box table-bordered">
+    <thead>
+    <tr style="background: #eaebec">
+        <th style="width: 50px;">No.</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Total</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+        {% for product in list_cart  %}
+            <tr class="row_cart form-group ">
+                <td>{{ forloop.counter }}</td>
+                <td>
+                    <a href="{% url 'product_detail' id=product.product_id.id %}" class="row_cart-name" >
+                    <img width="100" src="{% static product.product_id.image_path %}"
+                         alt={{ product.product_name }} >
+                    <span>{{ product.product_name }}<br></span></a>
+                </td>
+                <td>
+                    <div class="product-price-wrap">
+                        <div class="product-price">{{ product.product_id.price|intcomma }} VND</div>
+                    </div>
+                </td>
+                <td class="cart-col-qty">
+                    <div class="cart-qty">
+                        <div class="stepper ">
+                            <input style="width: 150px; margin: 0 auto" type="number"
+                                 data-id="26"
+                                 data-rowid="addc525ce43f5cbb4517bfa51c9c08e5"
+                                 data-store_id="3" onchange="updateCart($(this));"
+                                 class="item-qty form-control stepper-input"
+                                 name="qty-26" value="{{ product.qty }}">
+                            <span class="stepper-arrow up"></span>
+                            <span class="stepper-arrow down"></span>
+                        </div>
+                    </div>
+                    <span class="text-danger item-qty-26" style="display: none;"></span>
+                </td>
+                <td>
+                    <div class="product-price-wrap">
+                        <div class="product-price">{{ product.total_price|intcomma }} VND</div>
+{#                        |intcomma#}
+                    </div>
+                </td>
+                <td align="center">
+                    <a onclick="removeProduct({{ product.id }})" title="Remove Item" alt="Remove Item"
+                               class="cart_quantity_delete"
+                               href="https://demo.s-cart.org/cart_remove/addc525ce43f5cbb4517bfa51c9c08e5">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

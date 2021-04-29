@@ -10,3 +10,4 @@ from .role import Role
 from .user import User
 from .blog import Blog
 from .blog_translate import BlogTranslate
+from .order import Order

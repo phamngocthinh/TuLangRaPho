@@ -7,25 +7,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" type="text/css"
           href="//fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700%7CLato%7CKalam:300,400,700">
-    <meta name="description" content="Free website shopping cart for business">
+    <meta name="description" content="Từ làng ra phố">
     <meta name="keyword" content="">
-    <title>TuLangRaPho</title>
+    <title>Từ làng ra phố</title>
     <link rel="icon" href="{% static 'images/logo.png' %}" type="image/png" sizes="20x20">
-    <meta property="og:image" content="https://demo.s-cart.org/images/org.jpg"/>
-    <meta property="og:url" content="https://demo.s-cart.org"/>
+    <meta property="og:image" content="https://tulangrapho.com/static/images/logo.png"/>
+    <meta property="og:url" content="https://tulangrapho.com"/>
     <meta property="og:type" content="Website"/>
     <meta property="og:title" content="TuLangRaPho"/>
-    <meta property="og:description" content="Free website shopping cart for business"/>
+    <meta property="og:description" content="Từ làng ra phố"/>
     <meta name="csrf-token" content="wy4c136LVo5KnpK03FKr1pSZZddhehoiewKdJV7s">
-    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+{#    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">#}
+    <link rel="stylesheet" href="https://demo.s-cart.org/templates/s-cart-light/css/bootstrap.css">
     <link rel="stylesheet" href="{% static 'css/fonts.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     <link rel="stylesheet" href="{% static 'css/swiper.css' %}">
-    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static "fontawesome/css/all.min.css" %}" />
+{#    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">#}
 
 </head>
-<body>
+<body onload="loadCartFromLocalStorage()">
 <div class="page">
     {% include 'header.html' %}
     {% block content %}{% endblock %}
@@ -40,5 +42,22 @@
 <script src="https://demo.s-cart.org/templates/s-cart-light/js/core.min.js"></script>
 <script src="https://demo.s-cart.org/templates/s-cart-light/js/script.js"></script>
 <script src="https://demo.s-cart.org/js/sweetalert2.all.min.js"></script>
+<link rel="stylesheet" type="text/css" href="{% static "fontawesome/css/all.min.css" %}" />
+<script>
+    function loadCartFromLocalStorage(){
+        if (localStorage.hasOwnProperty('count_cart') == false) {
+            localStorage.setItem('count_cart', '0');
+            $('.sc-cart').html('0');
+        }
+        else{
+            $('.sc-cart').html(localStorage.getItem('count_cart'));
+        }
+        if (localStorage.hasOwnProperty('list_cart') == false) {
+            let list_cart = [];
+            localStorage.setItem('list_cart', JSON.stringify(list_cart));
+        }
+}
+
+</script>
 </body>
 </html>

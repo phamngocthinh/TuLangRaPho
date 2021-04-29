@@ -1,0 +1,409 @@
+{% load mathfilters %}
+{% load static %}
+{% load humanize %}
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+    $(document).ready(function() {
+        let data = localStorage.getItem('list_cart');
+        getListCart(data);
+    });
+
+    function getListCart(listCart) {
+        $.ajax({
+            url: "/check_list_product_exist/",
+            type: "POST",
+            dataType: "JSON",
+            data: {
+                "data": listCart,
+            },
+            async: false,
+            success: function (data, status, xhr) {
+                $("#tableListCart").html(data.table_cart_html);
+            },
+        });
+    };
+
+    $(document).on('submit', '#form-process',function(e){
+    $.ajax({
+        type:'POST',
+        url:'{% url "order" %}',
+        data:{
+            title:$('#title').val(),
+            description:$('#description').val(),
+            csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+            action: 'post'
+        },
+        success:function(json){
+            document.getElementById("post-form").reset();
+            $(".posts").prepend('<div class="col-md-6">'+
+                '<div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">' +
+                    '<div class="col p-4 d-flex flex-column position-static">' +
+                        '<h3 class="mb-0">' + json.title + '</h3>' +
+                        '<p class="mb-auto">' + json.description + '</p>' +
+                    '</div>' +
+                '</div>' +
+            '</div>'
+            )
+        },
+        error : function(xhr,errmsg,err) {
+        console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+    }
+    });
+
+    $('#form-process').on('submit', function(event){
+    event.preventDefault();
+    console.log("form submitted!")  // sanity check
+    create_post();
+});
+});
+
+</script>
+<section class="section section-xl bg-default text-md-left">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-responsive" id="tableListCart">
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="pull-left">
+                    <button class="btn btn-default btn-back" type="button"
+                            onclick="location.href='{% url 'home' %}'">
+                        <i class="fa fa-arrow-left"></i>
+                        Back to Shop
+                    </button>
+                </div>
+                <div class="pull-right">
+                    <button class="btn btn-delete-all" type="button"
+                            onclick="if(confirm('Confirm ?')) window.location.href='https://demo.s-cart.org/clear_Cart';">
+                        <i class="fa fa-window-close" aria-hidden="true"></i>
+                        Remove all
+                    </button>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <form class="sc-shipping-address" id="form-process" role="form" method="POST"
+                      action="{% url 'order' %}">
+                    <input type="hidden" name="_token" value="GezraCcmdAX8cRm6joYCvlgwgz0hu2y1lsLQce2m">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <table class="table table-borderless table-responsive">
+                                <tbody>
+                                <tr width: 100%>
+                                    <td class="form-group">
+                                        <label for="phone" class="control-label"><i class="fa fa-user"></i>
+                                            Họ và tên:</label>
+                                        <input class="form-control" name="first_name" type="text" style="width: 100%;"
+                                               placeholder="First name" value="">
+                                    </td>
+                                    <td class="form-group">
+                                        <label for="phone" class="control-label"><i class="fa fa-phone"
+                                                                                    aria-hidden="true"></i>
+                                            Số điện thoại:</label>
+                                        <input class="form-control" name="phone" style="width: 100%;" type="text" placeholder="Phone"
+                                               value="">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" class="form-group">
+                                        <label for="email" class="control-label"><i class="fa fa-envelope"></i>
+                                            Email:</label>
+                                        <input class="form-control" name="email" type="text" style="width: 100%;" placeholder="Email"
+                                               value="">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" class="form-group">
+                                        <label for="country" class="control-label"><i class="fas fa-globe"></i>
+                                            Tỉnh/Thành phố:</label>
+                                        <select class="form-control country " style="width: 100%;" name="country">
+                                            <option value="">__Country__</option>
+                                            <option value="AL">Albania</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" class="form-group">
+                                        <label for="country" class="control-label"><i class="fas fa-globe"></i>
+                                            Quận/Huyện:</label>
+                                        <select class="form-control country " style="width: 100%;" name="country">
+                                            <option value="">__Country__</option>
+                                            <option value="AL">Albania</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" class="form-group">
+                                        <label for="country" class="control-label"><i class="fas fa-globe"></i>
+                                            Phường/Xã:</label>
+                                        <select class="form-control country " style="width: 100%;" name="country" placeholder="Chọn Phường/Xã">
+                                            <option value="z">__Country__</option>
+                                            <option value="AL">Albania</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" class="form-group ">
+                                        <label for="address1" class="control-label"><i class="fa fa-list-ul"></i>
+                                            Địa chỉ:</label>
+                                        <input class="form-control" name="address1" type="text" placeholder="Ví dụ: 52, đường Trần Hưng Đạo"
+                                               value="">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <label class="control-label"><i class="fa fa-calendar-o"></i>
+                                            Chú thích:</label>
+                                        <textarea class="form-control" rows="3" name="comment"
+                                                  placeholder="Note...."></textarea>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <table class="table box table-bordered" id="showTotal">
+                                        <tbody>
+                                        <tr class="showTotal">
+                                            <th>Tạm tính</th>
+                                            <td style="text-align: right" id="subtotal">
+                                                $59,000
+                                            </td>
+                                        </tr>
+                                        <tr class="showTotal">
+                                            <th>Phí vận chuyển</th>
+                                            <td style="text-align: right" id="tax">
+                                                $5,900
+                                            </td>
+                                        </tr>
+                                        <tr class="showTotal" style="background:#f5f3f3;font-weight: bold;">
+                                            <th>Thành tiền</th>
+                                            <td style="text-align: right" id="total">
+                                                $64,900
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group ">
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="form-group col-md-12">
+                                                        <label class="control-label" for="inputGroupSuccess3"><i
+                                                                class="fa fa-exchange" aria-hidden="true"></i> Coupon
+                                                            <span style="display:inline; cursor: pointer; display: none"
+                                                                  class="text-danger"
+                                                                  id="removeCoupon">(Remove coupon <i
+                                                                    class="fa fa fa-times"></i>)</span>
+                                                        </label>
+                                                        <div id="coupon-group" class="input-group ">
+                                                            <input type="text" placeholder="Your coupon"
+                                                                   class="form-control" id="coupon-value"
+                                                                   aria-describedby="inputGroupSuccess3Status">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text " id="coupon-button"
+                                                                      style="cursor: pointer;"
+                                                                      data-loading-text="<i class='fa fa-spinner fa-spin'></i> checking">Apply</span>
+                                                            </div>
+                                                        </div>
+                                                        <span class="status-coupon" style="display: none;"
+                                                              aria-hidden="true"></span>
+                                                        <div class="coupon-msg  "
+                                                             style="text-align: left;padding-left: 10px; "></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group ">
+                                                <h3 class="control-label"><i class="fa fa-truck" aria-hidden="true"></i>
+                                                    Shipping method:<br></h3>
+                                            </div>
+                                            <div class="form-group">
+                                                <div>
+                                                    <label class="radio-inline">
+                                                        <input type="radio" name="shippingMethod"
+                                                               value="ShippingStandard" style="position: relative;"
+                                                               class="radio-custom"><span
+                                                            class="radio-custom-dummy"></span>
+                                                        Shipping Standard
+                                                        ($0)
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group ">
+                                                <h3 class="control-label"><i class="fa fa-credit-card-alt"></i>
+                                                    Payment method:<br></h3>
+                                            </div>
+                                            <div class="form-group cart-payment-method">
+                                                <div>
+                                                    <label class="radio-inline">
+                                                        <input checked type="radio" name="paymentMethod" value="Cash"
+                                                               style="position: relative;" class="radio-custom" checked="checked">
+{#                                                        <span class="radio-custom-dummy" ></span>#}
+                                                        <label class="radio-inline" for="payment-Cash">
+                                                            <img title="Cash on delivery" alt="Cash on delivery"
+                                                                 src="https://demo.s-cart.org/Plugins/Payment/Cash/images/logo.png">
+                                                        </label>
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <label class="radio-inline">
+                                                        <input type="radio" name="paymentMethod" value="MomoBasic"
+                                                               style="position: relative;" class="radio-custom"><span
+                                                            class="radio-custom-dummy"></span>
+                                                        <label class="radio-inline" for="payment-MomoBasic">
+                                                            <img title="MOMO payment basic" alt="MOMO payment basic"
+                                                                 src="https://demo.s-cart.org/Plugins/Payment/MomoBasic/images/momo.png">
+                                                        </label>
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <label class="radio-inline">
+                                                        <input type="radio" name="paymentMethod" value="PaypalExpress"
+                                                               style="position: relative;" class="radio-custom"><span
+                                                            class="radio-custom-dummy"></span>
+                                                        <label class="radio-inline" for="payment-PaypalExpress">
+                                                            <img title="PaypalExpress" alt="PaypalExpress"
+                                                                 src="https://demo.s-cart.org/Plugins/Payment/PaypalExpress/images/logo.png">
+                                                        </label>
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <label class="radio-inline">
+                                                        <input type="radio" name="paymentMethod" value="VnpayBasic"
+                                                               style="position: relative;" class="radio-custom"><span
+                                                            class="radio-custom-dummy"></span>
+                                                        <label class="radio-inline" for="payment-VnpayBasic">
+                                                            <img title="VnpayBasic" alt="VnpayBasic"
+                                                                 src="https://demo.s-cart.org/Plugins/Payment/VnpayBasic/images/vnpay.png">
+                                                        </label>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" style="padding-bottom: 20px;">
+                                <div class="col-md-12 text-center">
+                                    <div class="pull-right">
+                                        <style>
+                                            #button-form-process {
+                                                display: none !important;
+                                            }
+                                        </style>
+                                        <script src="https://www.google.com/recaptcha/api.js"></script>
+                                        <div>
+                                            <div class="grecaptcha-badge" data-style="bottomright"
+                                                 style="width: 256px; height: 60px; display: block; transition: right 0.3s ease 0s; position: fixed; bottom: 14px; right: -186px; box-shadow: gray 0px 0px 5px; border-radius: 2px; overflow: hidden;">
+                                                <div class="grecaptcha-logo">
+                                                    <iframe src="https://www.google.com/recaptcha/api2/anchor?ar=1&amp;k=6LcyhswZAAAAALSgF3tAJxMsy7jTqvL5NnFFmVrg&amp;co=aHR0cHM6Ly9kZW1vLnMtY2FydC5vcmc6NDQz&amp;hl=vi&amp;v=qc5B-qjP0QEimFYUxcpWJy5B&amp;size=invisible&amp;sa=submit&amp;cb=2xgjhvcyx1j9"
+                                                            width="256" height="60" role="presentation"
+                                                            name="a-lhcbcyau2uvb" frameborder="0" scrolling="no"
+                                                            sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox"></iframe>
+                                                </div>
+                                                <div class="grecaptcha-error"></div>
+                                                <textarea id="g-recaptcha-response" name="g-recaptcha-response"
+                                                          class="g-recaptcha-response"
+                                                          style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea>
+                                            </div>
+                                            <iframe style="display: none;"></iframe>
+                                        </div>
+                                        <button class="g-recaptcha button"
+                                                data-sitekey="6LcyhswZAAAAALSgF3tAJxMsy7jTqvL5NnFFmVrg"
+                                                data-callback="onSubmit" data-action="submit">Checkout
+                                        </button>
+                                        <script>
+                                            function onSubmit() {
+                                                document.getElementById("form-process").submit();
+
+                                            }
+                                        </script>
+                                        <button class="button button-lg button-secondary" type="submit"
+                                                id="button-form-process">Checkout
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+ <div id="dialog-confirm" title="Confirmation" style='display: none'>
+    <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>
+        Are you sure?</p>
+</div>
+<script src="https://project.s3.amazonaws.com/static/js/chat.js"></script>
+<script>
+    {#$(document).ready(function() {#}
+    {#    console.log("ready!");#}
+    {#    let trHTML = '';#}
+    {#    console.log("ready1!");#}
+    {#    document.getElementById('tableListCart').innerHTML = '';#}
+    {#    console.log("ready!2");#}
+    {#    let data = JSON.parse(localStorage.getItem('list_cart'));#}
+    {#    console.log("ready!3");#}
+    {#    $.each(data, function (i, item) {#}
+    {#        console.log("ready!4");#}
+    {#        trHTML += '<tr><td>' + item[0] + '</td><td>' + item[1] + '</td></tr>';#}
+    {#        console.log("ready!5");#}
+    {#        $('#tableListCart').append(trHTML);#}
+    {#        console.log("zzzThinh!");#}
+    {#    });#}
+    {#});#}
+
+
+
+    function removeProduct(id) {
+        $.ajax({
+            url: "/check_product_exist/",
+            type: "POST",
+            dataType: "JSON",
+            data: {
+                "product_id": id,
+            },
+            async: false,
+            success: function (response) {
+                if(response["valid"]) {
+                    let isExist = false;
+                    alertJs('success', "Add product to cart successfully");
+                    let count_cart = parseInt(localStorage.getItem('count_cart')) + 1;
+                    localStorage.setItem('count_cart', count_cart.toString());
+                    $('.sc-cart').html(count_cart);
+                    // add object to localStorage
+                    var list_cart = JSON.parse(localStorage.getItem('list_cart'));
+                    for (let i = 0; i< list_cart.length ; i++ )
+                        if (list_cart[i].id === id){
+                            isExist = true;
+                            list_cart[i].qty += 1;
+                        }
+                    if (!isExist){
+                        list_cart.push({"id": id, "qty": 1});
+                    }
+                    localStorage.setItem('list_cart', JSON.stringify(list_cart));
+                }
+            },
+
+        });
+        console.log("remove");
+    }
+
+
+
+</script>

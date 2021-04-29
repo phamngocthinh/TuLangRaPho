@@ -8,6 +8,10 @@ class Product(BaseModel):
                                         blank=True, null=True)
     category_id = models.ForeignKey(to=Category, on_delete=models.CASCADE, db_column='category_id')
     image_path = models.CharField(db_column='image_path', max_length=150, blank=True, null=False)
+    rank = models.IntegerField(db_column='rank', blank=True, null=True)
+    price = models.DecimalField(max_digits=15, decimal_places=0, blank=True, null=True)
+    quantity = models.IntegerField(db_column='quantity', blank=False, null=False)
+    # price = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True)
 
     class Meta:
         db_table = 'products'

@@ -1,0 +1,26 @@
+{% load static %}
+
+<section class="breadcrumbs-custom">
+    <div class="parallax-container" data-parallax-img="/static/images/slider/tulangrapho.jpg">
+        <div class="material-parallax parallax"><img src="/static/images/slider/tulangrapho.jpg" alt=""
+                                                     style="display: block; transform: translate3d(-50%, 141px, 0px);">
+        </div>
+        <div class="material-parallax parallax">
+            <img src="/static/images/slider/tulangrapho.jpg" alt=""
+                 style="display: block; transform: translate3d(-50%, 83px, 0px); height: auto; width: 100%">
+        </div>
+        <div class="breadcrumbs-custom-body parallax-content context-dark">
+            <div class="container">
+                <h2 class="breadcrumbs-custom-title">{{ category.category_name }}</h2>
+            </div>
+        </div>
+    </div>
+    <div class="breadcrumbs-custom-footer">
+        <div class="container">
+            <ul class="breadcrumbs-custom-path">
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li class="active">{{ category.category_name }}</li>
+            </ul>
+        </div>
+    </div>
+</section>
